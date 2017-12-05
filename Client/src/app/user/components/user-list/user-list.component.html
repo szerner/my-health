@@ -1,0 +1,28 @@
+<h2>Users
+  <a class="btn btn-primary float-right" routerLink="new">
+    <i class="fa fa-user-plus" aria-hidden="true"></i>
+  </a>
+</h2>
+<table *ngIf="users" class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.age }}</td>
+      <td  class="action-buttons">
+        <a class="btn btn-primary btn-sm" [routerLink]="['/users', user.id]"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+        <button class="btn btn-danger btn-sm" (click)="deleteUser(user)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<spinner *ngIf="!users" [size]="2"></spinner>
+<p *ngIf="users?.length==0">
+  No users.
+</p>

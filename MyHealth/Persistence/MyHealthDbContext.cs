@@ -1,14 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using MyHealth.Models;
+using MyHealth.Core.Models;
 
 namespace MyHealth.Persistence
 {
     public class MyHealthDbContext : DbContext
     {
 		public DbSet<User> Users { get; set; }
-		public DbSet<BloodPressure> BloodPressure { get; set; }
-		public DbSet<PulseRate> PulseRate { get; set; }
-		public DbSet<BodyWeight> BodyWeight { get; set; }
+		public DbSet<BloodPressure> BloodPressures { get; set; }
+		public DbSet<PulseRate> PulseRates { get; set; }
+		public DbSet<BodyWeight> BodyWeights { get; set; }
+		
         public MyHealthDbContext(DbContextOptions<MyHealthDbContext> options) : base(options)
 		  {
 				
