@@ -6,10 +6,13 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { DialogService } from './services/dialog.service';
+import { BootstrapModule } from '../shared/modules/bootstrap.module';
+import { UserService } from './services/user.service';
 
 @NgModule({
   imports: [
-    RouterModule
+    RouterModule,
+    BootstrapModule
   ],
   declarations: [
     NavbarComponent,
@@ -22,7 +25,8 @@ import { DialogService } from './services/dialog.service';
     NotFoundComponent
   ],
   providers: [
-    DialogService
+    DialogService,
+    UserService
   ]
 
 })

@@ -1,24 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { Component } from '@angular/core';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
-  selector: 'confirm-dialog',
-  templateUrl: 'confirm-dialog.component.html'
+  templateUrl: './confirm-dialog.component.html'
 })
-export class ConfirmDialogComponent {
-  title: string;
+export class ConfirmDialogComponent extends DialogComponent {
   message: string = '';
-  confirmed: boolean;
-
-  constructor(public bsModalRef: BsModalRef) {  }
 
   confirm() {
-    this.confirmed = true;
-    this.bsModalRef.hide();
+    this.resultData = true;
+    this.close();
   }
   decline() {
-    this.confirmed = false;
-    this.bsModalRef.hide();
+    this.resultData = false;
+    this.close();
   }
 
   get paragraphs(): string[] {

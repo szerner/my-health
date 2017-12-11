@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap';
 import { DialogComponent } from '../../../../shared/components/dialog/dialog.component';
 
 @Component({
-  templateUrl: './weight-form.component.html',
-  styleUrls: ['./weight-form.component.css']
+  templateUrl: './circulation-form.component.html',
+  styleUrls: ['./circulation-form.component.css']
 })
-export class WeightFormComponent extends DialogComponent implements OnInit {
+export class CirculationFormComponent extends DialogComponent implements OnInit {
   data;
 
   ngOnInit() {
     this.data = {
-      bodyWeight: 0,
+      systolic: 0,
+      diastolic: 0,
+      rate: 0,
       date: new Date().toISOString()
     }
   }
@@ -20,5 +21,4 @@ export class WeightFormComponent extends DialogComponent implements OnInit {
     this.resultData = this.data;
     this.close();
   }
-
 }

@@ -6,6 +6,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { BootstrapModule } from './modules/bootstrap.module';
 import { SortableTableComponent } from './components/sortable-table/sortable-table.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   imports: [
@@ -14,18 +15,17 @@ import { SortableTableComponent } from './components/sortable-table/sortable-tab
   exports: [
     CommonModule,
     FormsModule,
-    BootstrapModule,
     HttpClientModule,
     SpinnerComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
   ],
   declarations: [
     SpinnerComponent,
     ConfirmDialogComponent,
-    SortableTableComponent
+    SortableTableComponent,
   ],
   entryComponents: [
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
   ]
 })
 export class SharedModule { }

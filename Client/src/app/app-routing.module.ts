@@ -5,7 +5,7 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch:'full' },
-  { path: 'users', loadChildren: 'app/user/user.module#UserModule' },
+  { path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule' },
   { path: 'health', loadChildren: 'app/health/health.module#HealthModule' },
   { path: '**', component: NotFoundComponent }
 ];

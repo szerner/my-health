@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './core/components/home/home.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
+import { HealthModule } from './health/health.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
     CoreModule,
     SharedModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HealthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

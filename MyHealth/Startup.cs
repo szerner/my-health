@@ -28,6 +28,7 @@ namespace MyHealth
         {
 			services.AddDbContext<MyHealthDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:Default"]));
 			services.AddScoped<IUserRepository, UserRepository>();
+			services.AddScoped<IHealthdataRepository, HealthdataRepository>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddMvc();
         }

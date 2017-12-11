@@ -8,12 +8,32 @@ import { CirculationChartComponent } from './components/circulation/circulation-
 import { WeightChartComponent } from './components/weight/weight-chart/weight-chart.component';
 import { WeightTableComponent } from './components/weight/weight-table/weight-table.component';
 import { WeightFormComponent } from './components/weight/weight-form/weight-form.component';
+import { CirculationFormComponent } from './components/circulation/circulation-form/circulation-form.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BootstrapModule } from '../shared/modules/bootstrap.module';
+import { HealthService } from './services/health.service';
 
 @NgModule({
   imports: [
     SharedModule,
-    HealthRoutingModule
+    HealthRoutingModule,
   ],
-  declarations: [HealthDataComponent, HealthDataViewComponent, CirculationTableComponent, CirculationChartComponent, WeightChartComponent, WeightTableComponent, WeightFormComponent]
+  declarations: [
+    HealthDataComponent,
+    HealthDataViewComponent,
+    CirculationTableComponent,
+    CirculationChartComponent,
+    WeightChartComponent,
+    WeightTableComponent,
+    CirculationFormComponent,
+    WeightFormComponent
+  ],
+  entryComponents: [
+    WeightFormComponent
+  ],
+  providers: [
+    HealthService
+  ]
+
 })
 export class HealthModule { }

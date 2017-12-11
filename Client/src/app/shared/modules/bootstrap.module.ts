@@ -11,11 +11,6 @@ import {
     ButtonsModule.forRoot(),
     ModalModule.forRoot(),
     TabsModule.forRoot()
-  ],
-  exports: [
-    ButtonsModule,
-    TabsModule,
-    ModalModule
   ]
 })
 export class BootstrapModule { }

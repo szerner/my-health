@@ -1,12 +1,27 @@
-<div class="modal-header bg-danger text-white">
+<div class="modal-header bg-primary text-white">
   <h4 class="modal-title">{{title}}</h4>
 </div>
 <div class="modal-body">
-<form class="form-group">
-
-</form>
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="weight">Weight</label>
+      <div class="input-group">
+        <input [(ngModel)]="data.bodyWeight" name="weight" id="weight" type="number" min="30" max="250" class="form-control" required
+          #weight="ngModel">
+        <span class="input-group-addon">kg</span>
+      </div>
+      <div *ngIf="weight.touched && weight.invalid" class="alert alert-danger">Please enter the body weight</div>
+    </div>
+    <!-- <div class="form-group">
+      <label for="date">Date</label>
+      <input [(ngModel)]="data.date" name="date" id="date" type="date" class="form-control" required #date="ngModel">
+      <div *ngIf="date.touched && date.invalid" class="alert alert-danger">Please enter the date</div>
+    </div> -->
+  </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-  <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+  <div class="float-right">
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+  </div>
 </div>

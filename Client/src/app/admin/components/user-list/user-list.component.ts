@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../user.service';
 import { User } from '../../../shared/models/user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
 import { DialogService } from '../../../core/services/dialog.service';
+import { DialogResult } from '../../../shared/models/dialog-result';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -27,8 +28,8 @@ export class UserListComponent implements OnInit {
       This operation cannot be undone!`;
 
     this.dialogService.showConfirmDialog(title, message)
-      .then(confirmed => {
-        if (confirmed)
+      .then((result: DialogResult) => {
+        if (result.data)
           this.userService.deleteUser(user.id).subscribe(() => this.loadUsers());
       });
    // this.userService.deleteUser(id).subscribe(() => this.loadUsers());

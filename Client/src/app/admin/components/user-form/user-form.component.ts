@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../shared/models/user';
-import { UserService } from '../../user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -35,7 +34,7 @@ export class UserFormComponent implements OnInit {
     let action$ = this.user.id == 0 ? this.userService.createUser(this.user) : this.userService.updateUser(this.user);
     action$.subscribe(() => {
       // this.toastrService.success('The vehicle was sucessfully saved.', 'Success');
-      this.router.navigate(['/users']);
+      this.router.navigate(['../'], {relativeTo: this.activatedRoute});
     });
   }
 

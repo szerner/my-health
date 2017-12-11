@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../shared/models/user';
 import { Observable } from 'rxjs/Observable';
+import { User } from '../../shared/models/user';
 
 @Injectable()
 export class UserService {
+  currentUser: number = 1;
+
   private readonly usersEndpoint = '/api/users';
 
   constructor(private http: HttpClient) { }
@@ -28,6 +30,5 @@ export class UserService {
   deleteUser(id: number) {
     return this.http.delete(this.usersEndpoint + '/' + id);
   }
-
 
 }
