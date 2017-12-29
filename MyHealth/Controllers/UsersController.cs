@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyHealth.Core;
@@ -8,6 +9,7 @@ using MyHealth.Persistence;
 
 namespace MyHealth.Controllers
 {
+   [Authorize]
 	[Route("/api/users")]
 	public class UsersController : Controller
 	{
@@ -20,6 +22,7 @@ namespace MyHealth.Controllers
 			this.repository = repository;
 		}
 
+      [Authorize(Policy = "Admin")]
 		[HttpPost()]
 		public async Task<IActionResult> CreateUser([FromBody] User user)
 		{
@@ -54,6 +57,7 @@ namespace MyHealth.Controllers
 			return Ok(user);
 		}
 
+      [Authorize(Policy = "Admin")]
 		[HttpGet()]
 		public async Task<IActionResult> GetUsers()
 		{
@@ -72,7 +76,8 @@ namespace MyHealth.Controllers
 
 			return Ok(user);
 		}
-
+      
+      [Authorize(Policy = "Admin")]
 		[HttpDelete("{id}")]
 		public async Task<IActionResult> DeleteUser(int id)
 		{

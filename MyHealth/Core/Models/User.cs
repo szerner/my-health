@@ -11,22 +11,27 @@ namespace MyHealth.Core.Models
 		[Required]
 		[StringLength(100)]
 		public string FirstName { get; set; }
+
 		[Required]
 		[StringLength(100)]
 		public string LastName { get; set; }
+
 		[Required]
-		public Gender Gender { get; set; }
-		[Required]
-		[StringLength(20)]
+		[StringLength(100)]
+		public string Email { get; set; }
+
+		public Gender? Gender { get; set; }
+		
+		[StringLength(10)]
 		public string BirthDate { get; set; }
-		[Required]
-		public float Height { get; set; }
-		[Required]
-		public float Weight { get; set; }
+		public float? Height { get; set; }
+		public bool? Admin { get; set; }
 
 		public int Age { 
 			get {
-				DateTime now = DateTime.Today;
+            if (BirthDate == null) return 0;
+
+            DateTime now = DateTime.Today;
 				DateTime birthDate = System.Convert.ToDateTime(BirthDate);
 				int age = now.Year - birthDate.Year;
 				if (now < birthDate.AddYears(age)) age--;

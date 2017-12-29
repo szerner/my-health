@@ -1,23 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
-  templateUrl: './confirm-dialog.component.html'
+  templateUrl: 'confirm-dialog.component.html'
 })
 export class ConfirmDialogComponent extends DialogComponent {
-  message: string = '';
-
   confirm() {
-    this.resultData = true;
-    this.close();
+    this.close(true);
   }
   decline() {
-    this.resultData = false;
-    this.close();
+    this.close(false);
   }
 
   get paragraphs(): string[] {
-    return this.message.split("#");
+    return this.dialogInput.message.split("#");
   }
 }
 

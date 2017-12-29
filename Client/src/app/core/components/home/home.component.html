@@ -2,4 +2,6 @@
 <p>
    Enter and view your health data!
 </p>
-<button class="btn btn-primary">Login</button>
+<button *ngIf="!auth.isAuthenticated" class="btn btn-primary" (click)="login()">Login
+  <i class="fa fa-sign-in" aria-hidden="true"></i>
+</button>

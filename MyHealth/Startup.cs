@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,39 +11,62 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using MyHealth.Core;
 using MyHealth.Persistence;
 
 namespace MyHealth
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+   public class Startup
+   {
+      public Startup(IConfiguration configuration)
+      {
+         Configuration = configuration;
+      }
 
-        public IConfiguration Configuration { get; }
+      public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-			services.AddDbContext<MyHealthDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:Default"]));
-			services.AddScoped<IUserRepository, UserRepository>();
-			services.AddScoped<IHealthdataRepository, HealthdataRepository>();
-			services.AddScoped<IUnitOfWork, UnitOfWork>();
-			services.AddMvc();
-        }
+      // This method gets called by the runtime. Use this method to add services to the container.
+      public void ConfigureServices(IServiceCollection services)
+      {
+         services.AddDbContext<MyHealthDbContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:Default"]));
+         services.AddScoped<IUserRepository, UserRepository>();
+         services.AddScoped<IHealthdataRepository, HealthdataRepository>();
+         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
+         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
             {
-                app.UseDeveloperExceptionPage();
-            }
+               options.TokenValidationParameters = new TokenValidationParameters
+               {
+                  ValidateIssuer = true,
+                  ValidateAudience = true,
+                  ValidateLifetime = false, //revert to true!!
+                  ValidateIssuerSigningKey = true,
+                  ValidIssuer = Configuration["Jwt:Issuer"],
+                  ValidAudience = Configuration["Jwt:Issuer"],
+                  IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+               };
+            });
 
-            app.UseMvc();
-        }
-    }
+         services.AddAuthorization(options =>  {
+            options.AddPolicy("Admin", policy => policy.RequireClaim("userRole", "Admin"));
+         });
+
+         services.AddMvc();
+      }
+
+      // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+      public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+      {
+         if (env.IsDevelopment())
+         {
+            app.UseDeveloperExceptionPage();
+         }
+
+         app.UseAuthentication();
+
+         app.UseMvc();
+      }
+   }
 }

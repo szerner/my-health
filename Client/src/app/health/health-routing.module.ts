@@ -7,6 +7,7 @@ import { CirculationTableComponent } from './components/circulation/circulation-
 import { CirculationChartComponent } from './components/circulation/circulation-chart/circulation-chart.component';
 import { WeightTableComponent } from './components/weight/weight-table/weight-table.component';
 import { WeightChartComponent } from './components/weight/weight-chart/weight-chart.component';
+import { AuthGuard } from '../core/services/auth-guard.service';
 
 const routes: Routes = [
   {

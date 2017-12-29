@@ -30,7 +30,9 @@ namespace MyHealth.Migrations
 
                     b.Property<byte>("Systolic");
 
-                    b.Property<DateTime>("Time");
+                    b.Property<DateTime?>("Time")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GetUtcDate()");
 
                     b.Property<int>("UserId");
 
@@ -44,7 +46,9 @@ namespace MyHealth.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Time");
+                    b.Property<DateTime?>("Time")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GetUtcDate()");
 
                     b.Property<int>("UserId");
 
@@ -62,7 +66,7 @@ namespace MyHealth.Migrations
 
                     b.Property<byte>("Rate");
 
-                    b.Property<DateTime>("Time");
+                    b.Property<DateTime?>("Time");
 
                     b.Property<int>("UserId");
 
@@ -76,23 +80,28 @@ namespace MyHealth.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool?>("Admin")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
+
                     b.Property<string>("BirthDate")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(20);
+                        .HasMaxLength(100);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<byte>("Gender");
+                    b.Property<byte?>("Gender");
 
-                    b.Property<float>("Height");
+                    b.Property<float?>("Height");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(100);
-
-                    b.Property<float>("Weight");
 
                     b.HasKey("Id");
 

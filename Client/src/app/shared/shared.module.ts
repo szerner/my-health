@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import { BootstrapModule } from './modules/bootstrap.module';
-import { SortableTableComponent } from './components/sortable-table/sortable-table.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    NgbModule.forRoot()
   ],
   exports: [
     CommonModule,
     FormsModule,
-    HttpClientModule,
+    NgbModule.forRoot().ngModule,
     SpinnerComponent,
     ConfirmDialogComponent,
   ],
   declarations: [
     SpinnerComponent,
-    ConfirmDialogComponent,
-    SortableTableComponent,
+    DialogComponent,
+    ConfirmDialogComponent
   ],
   entryComponents: [
     ConfirmDialogComponent,

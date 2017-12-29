@@ -23,7 +23,10 @@ namespace MyHealth.Persistence
 
 		public async Task<IEnumerable<BodyWeight>> GetBodyWeights(int userId)
 		{
-			return await context.BodyWeights.Where(weight => weight.UserId == userId).ToListAsync();
+			return await context.BodyWeights
+            .Where(measurement => measurement.UserId == userId)
+            .OrderByDescending(measurement => measurement.Time)
+            .ToListAsync();
 		}
 
 		public async Task<BodyWeight> GetLastBodyWeight(int userId)
@@ -34,6 +37,10 @@ namespace MyHealth.Persistence
 				.FirstOrDefaultAsync();
 		}
 
+      public void DeleteBodyWeight(int weightId) {
+         context.BodyWeights.Remove(context.BodyWeights.Single(d => d.Id == weightId));
+      }
+
 		public void AddBloodPressure(BloodPressure pressure)
 		{
 			context.BloodPressures.Add(pressure);
@@ -41,7 +48,10 @@ namespace MyHealth.Persistence
 
 		public async Task<IEnumerable<BloodPressure>> GetBloodPressures(int userId)
 		{
-			return await context.BloodPressures.Where(pressure => pressure.UserId == userId).ToListAsync();
+			return await context.BloodPressures
+            .Where(measurement => measurement.UserId == userId)
+            .OrderByDescending(measurement => measurement.Time)
+            .ToListAsync();
 		}
 
 		public async Task<BloodPressure> GetLastBloodPressure(int userId)
@@ -59,7 +69,10 @@ namespace MyHealth.Persistence
 
 		public async Task<IEnumerable<PulseRate>> GetPulseRates(int userId)
 		{
-			return await context.PulseRates.Where(rate => rate.UserId == userId).ToListAsync();
+			return await context.PulseRates
+            .Where(measurement => measurement.UserId == userId)
+            .OrderByDescending(measurement => measurement.Time)
+            .ToListAsync();
 		}
 
 		public async Task<PulseRate> GetLastPulseRate(int userId)

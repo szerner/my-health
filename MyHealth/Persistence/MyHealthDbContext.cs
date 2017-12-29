@@ -14,5 +14,22 @@ namespace MyHealth.Persistence
 		  {
 				
 		  }
+
+      protected override void OnModelCreating(ModelBuilder modelBuilder)
+      {
+         modelBuilder.Entity<User>()
+             .Property(b => b.Admin)
+             .HasDefaultValue(false);
+
+         modelBuilder.Entity<BodyWeight>()
+            .Property(p => p.Time)
+            .HasDefaultValueSql("GetUtcDate()");
+         modelBuilder.Entity<BloodPressure>()
+            .Property(p => p.Time)
+            .HasDefaultValueSql("GetUtcDate()");
+         modelBuilder.Entity<BodyWeight>()
+            .Property(p => p.Time)
+            .HasDefaultValueSql("GetUtcDate()");
+      }
     }
 }

@@ -1,65 +1,29 @@
-<h2>{{title}}</h2>
-<form #f="ngForm" (ngSubmit)="submit()" novalidate>
-  <div class="row">
-    <div class="form-group col-sm">
-      <label for="firstName">First Name</label>
-      <input [(ngModel)]="user.firstName" name="firstName" id="firstName" type="text" class="form-control" #firstName="ngModel" required>
-      <div *ngIf="firstName.touched && firstName.invalid" class="alert alert-danger">Please specify the First Name</div>
-    </div>
-    <div class="form-group col-sm">
-      <label for="lastName">Last Name</label>
-      <input [(ngModel)]="user.lastName" name="lastName" id="lastName" type="text" class="form-control" required #lastName="ngModel">
-      <div *ngIf="lastName.touched && lastName.invalid" class="alert alert-danger">Please specify the Last Name</div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group col-sm">
-      <label for="birthDate">Birth Date</label>
-      <input [(ngModel)]="user.birthDate" name="birthDate" id="birthDate" type="date" class="form-control" required #birthDate="ngModel">
-      <div *ngIf="birthDate.touched && birthDate.invalid" class="alert alert-danger">Please enter the birth date</div>
-    </div>
-    <div class="form-group col-sm">
-      <label>Gender</label>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="gender" [value]="1" [(ngModel)]="user.gender">Male
-        </label>
+<div class="modal-header bg-primary text-white">
+   <h4 class="modal-title">{{dialogInput.title}}</h4>
+</div>
+<div class="modal-body">
+   <form #f="ngForm" novalidate>
+      <div class="form-group">
+         <label for="firstName">First Name</label>
+         <input [(ngModel)]="dialogInput.data.firstName" name="firstName" id="firstName" type="text" class="form-control" #firstName="ngModel"
+            required>
+         <div *ngIf="firstName.touched && firstName.invalid" class="alert alert-danger">Please specify the users First Name</div>
       </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="gender" [value]="2" [(ngModel)]="user.gender">Female
-        </label>
+      <div class="form-group">
+         <label for="lastName">Last Name</label>
+         <input [(ngModel)]="dialogInput.data.lastName" name="lastName" id="lastName" type="text" class="form-control" required #lastName="ngModel">
+         <div *ngIf="lastName.touched && lastName.invalid" class="alert alert-danger">Please specify the users Last Name</div>
       </div>
-      <div class="form-check">
-        <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="gender" [value]="3" [(ngModel)]="user.gender">Other
-        </label>
+      <div class="form-group">
+         <label for="email">Email</label>
+         <input [(ngModel)]="dialogInput.data.email" name="email" id="email" type="email" class="form-control" required #email="ngModel">
+         <div *ngIf="email.touched && email.invalid" class="alert alert-danger">Please enter the users Email</div>
       </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group col-sm">
-      <label for="weight">Weight</label>
-      <div class="input-group">
-        <input [(ngModel)]="user.weight" name="weight" id="weight" type="number" min="30" max="250" class="form-control" required #weight="ngModel">
-        <span class="input-group-addon">kg</span>
-      </div>
-      <div *ngIf="weight.touched && weight.invalid" class="alert alert-danger">Please enter the Weight</div>
-    </div>
-    <div class="form-group col-sm">
-      <label for="height">Height</label>
-      <div class="input-group">
-        <input [(ngModel)]="user.height" name="height" id="height" type="number" min="100" max="300" class="form-control" required #height="ngModel">
-        <span class="input-group-addon">cm</span>
-      </div>
-      <div *ngIf="weight.touched && weight.invalid" class="alert alert-danger">Please enter the Height</div>
-    </div>
-  </div>
-
-  <div class="float-right">
-    <a class="btn btn-light" routerLink="../">Cancel</a>
-    <button [disabled]="f.invalid" class="btn btn-primary">Save</button>
-  </div>
-</form>
+   </form>
+</div>
+<div class="modal-footer">
+   <div class="float-right">
+      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+      <button type="button" (click)="save(f.value)" [disabled]="f.invalid" class="btn btn-primary">Save</button>
+   </div>
+</div>

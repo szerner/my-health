@@ -4,15 +4,16 @@ export class User {
   id = 0;
   firstName: string;
   lastName: string;
+  email: string;
   birthDate: string;
-  age: number
+  age: number;
   gender: Gender;
-  weight: number;
-  height: number;
+   height: number;
+   admin: boolean; 
 
-  // get fullName(): string {
-  //   return this.firstName + " " + this.lastName;
-  // }
+  get fullName(): string {
+    return this.firstName + " " + this.lastName;
+  }
 
   // get age(): number {
   //   var timeDiff = Math.abs(Date.now() - this.birthDate);

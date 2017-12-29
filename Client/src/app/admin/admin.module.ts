@@ -13,7 +13,10 @@ import { AdminComponent } from './components/admin/admin.component';
   declarations: [
     AdminComponent,
     UserListComponent,
-    UserFormComponent,
+    UserFormComponent
+   ],
+   entryComponents: [
+     UserFormComponent
   ]
 })
 export class AdminModule { }

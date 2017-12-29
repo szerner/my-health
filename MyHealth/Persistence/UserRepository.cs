@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyHealth.Core;
@@ -18,6 +19,10 @@ namespace MyHealth.Persistence
 		public async Task<User> GetUser(int id)
 		{
 			return await context.Users.FindAsync(id);
+		}
+
+		public async Task<User> GetUser(string email) {
+			return await context.Users.FirstOrDefaultAsync(user => user.Email == email);
 		}
 
 		public async Task<IEnumerable<User>> GetUsers()

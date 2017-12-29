@@ -7,6 +7,7 @@ namespace MyHealth.Core
     public interface IUserRepository
     {
 		Task<User> GetUser(int id);
+		Task<User> GetUser(string email);
 		Task<IEnumerable<User>> GetUsers();
 		void Add(User user);
 		void Update(User user);

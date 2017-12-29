@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './core/components/home/home.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { HealthModule } from './health/health.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/services/auth.interceptor';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { HealthModule } from './health/health.module';
     SharedModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HealthModule
+     HealthModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

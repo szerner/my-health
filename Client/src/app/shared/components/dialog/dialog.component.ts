@@ -1,33 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { DialogResult } from '../../models/dialog-result';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, Input, Injector } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { DialogResult } from '../../../shared/models/dialog-result';
+import { UserService } from '../../../core/services/user.service';
+import { DialogInput } from '../../models/dialog-input';
 
 @Component({
   template: ''
 })
-export class DialogComponent  {
-  title: string;
-  private _result: DialogResult;
+export class DialogComponent {
+  @Input() dialogInput: DialogInput;
 
-  constructor(public bsModalRef: BsModalRef) {
-    this._result = new DialogResult();
-  }
-
-  get result(): DialogResult {
-    return this._result;
-  }
-
-  set resultData(data: any) {
-    this._result.data = data;
-    this._result.canceled = false;
-  }
+  constructor(public activeModal: NgbActiveModal, injector?: Injector) { }
 
   cancel() {
-    this._result.canceled = true;
-    this.close();
+    this.activeModal.close(null);
   }
 
-  close() {
-    this.bsModalRef.hide();
+  close(data?: any) {
+    let dialogResult = new DialogResult();
+    dialogResult.data = (data != null) ? data : this.dialogInput.data;
+    this.activeModal.close(dialogResult);
+  }
+
+  save(data?: any) {
+    this.close(data);
   }
 }

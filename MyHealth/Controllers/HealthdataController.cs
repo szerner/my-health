@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyHealth.Core;
@@ -8,6 +9,7 @@ using MyHealth.Persistence;
 
 namespace MyHealth.Controllers
 {
+   [Authorize]
 	[Route("/api/healthdata")]
 	public class HealthdataController : Controller
 	{
@@ -31,17 +33,24 @@ namespace MyHealth.Controllers
 
 			return Ok(weight);
 		}
-		[HttpGet("bodyweights/{id}")]
-		public async Task<IActionResult> GetBodyWeights(int id)
+		[HttpGet("bodyweights/{userId}")]
+		public async Task<IActionResult> GetBodyWeights(int userId)
 		{
-			var weights = await repository.GetBodyWeights(id);
+			var weights = await repository.GetBodyWeights(userId);
 			return Ok(weights);
 		}
-		[HttpGet("bodyweights/{id}/latest")]
-		public async Task<IActionResult> GetLastBodyWeight(int id)
+		[HttpGet("bodyweights/{userId}/latest")]
+		public async Task<IActionResult> GetLastBodyWeight(int userId)
 		{
-			var weight = await repository.GetLastBodyWeight(id);
+			var weight = await repository.GetLastBodyWeight(userId);
 			return Ok(weight);
+		}
+		[HttpDelete("bodyweights/{userId}/{weightId}")]
+		public async Task<IActionResult> DeleteBodyWeight(int weightId)
+		{
+			repository.DeleteBodyWeight(weightId);
+         await unitOfWork.CompleteAsync();
+			return Ok();
 		}
 
 		[HttpPost("bloodpressures")]

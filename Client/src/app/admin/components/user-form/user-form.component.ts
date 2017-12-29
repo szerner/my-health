@@ -1,41 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../shared/models/user';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
+import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
 
 @Component({
-  selector: 'app-user-form',
   templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
 })
-export class UserFormComponent implements OnInit {
-  user: User;
-  title: string;
+export class UserFormComponent extends DialogComponent implements OnInit {
 
-  constructor(
-    private userService: UserService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {
-    this.user = new User();
-   }
+   ngOnInit() {
 
-  ngOnInit() {
-    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      let userId = +params.get('id');
-      if (userId)
-        this.userService.getUser(userId).subscribe(user => this.user = user);
-
-      this.title = userId ? "Edit User" : "New User";
-    });
   }
 
   submit() {
-    let action$ = this.user.id == 0 ? this.userService.createUser(this.user) : this.userService.updateUser(this.user);
-    action$.subscribe(() => {
-      // this.toastrService.success('The vehicle was sucessfully saved.', 'Success');
-      this.router.navigate(['../'], {relativeTo: this.activatedRoute});
-    });
+   //  let action$ = this.user.id == 0 ? this.userService.createUser(this.user) : this.userService.updateUser(this.user);
+   //  action$.subscribe(() => {
+   //    // this.toastrService.success('The vehicle was sucessfully saved.', 'Success');
+   //    this.router.navigate(['../'], { relativeTo: this.activatedRoute });
+   //  });
   }
 
 }

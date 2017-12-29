@@ -12,8 +12,8 @@ using System;
 namespace MyHealth.Migrations
 {
     [DbContext(typeof(MyHealthDbContext))]
-    [Migration("20171123174816_AddUserHeight")]
-    partial class AddUserHeight
+    [Migration("20171227173826_SeedAdmin")]
+    partial class SeedAdmin
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,13 +31,13 @@ namespace MyHealth.Migrations
 
                     b.Property<byte>("Systolic");
 
-                    b.Property<DateTime>("Time");
+                    b.Property<DateTime?>("Time")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GetUtcDate()");
 
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("BloodPressures");
                 });
@@ -47,15 +47,15 @@ namespace MyHealth.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Time");
+                    b.Property<DateTime?>("Time")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GetUtcDate()");
 
                     b.Property<int>("UserId");
 
                     b.Property<float>("Weight");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("BodyWeights");
                 });
@@ -67,13 +67,11 @@ namespace MyHealth.Migrations
 
                     b.Property<byte>("Rate");
 
-                    b.Property<DateTime>("Time");
+                    b.Property<DateTime?>("Time");
 
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("PulseRates");
                 });
@@ -83,15 +81,24 @@ namespace MyHealth.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("BirthDate");
+                    b.Property<bool?>("Admin")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("BirthDate")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<byte>("Gender");
+                    b.Property<byte?>("Gender");
 
-                    b.Property<float>("Height");
+                    b.Property<float?>("Height");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -100,30 +107,6 @@ namespace MyHealth.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("MyHealth.Core.Models.BloodPressure", b =>
-                {
-                    b.HasOne("MyHealth.Core.Models.User")
-                        .WithMany("BloodPressures")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MyHealth.Core.Models.BodyWeight", b =>
-                {
-                    b.HasOne("MyHealth.Core.Models.User")
-                        .WithMany("BodyWeights")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MyHealth.Core.Models.PulseRate", b =>
-                {
-                    b.HasOne("MyHealth.Core.Models.User")
-                        .WithMany("PulseRates")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
