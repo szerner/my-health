@@ -11,12 +11,9 @@ namespace MyHealth.Core
 		Task<BodyWeight> GetLastBodyWeight(int userId);
       void DeleteBodyWeight(int weightId);
 
-      void AddBloodPressure(BloodPressure pressure);
-		Task<IEnumerable<BloodPressure>> GetBloodPressures(int userId);
-		Task<BloodPressure> GetLastBloodPressure(int userId);
-
-		void AddPulseRate(PulseRate rate);
-		Task<IEnumerable<PulseRate>> GetPulseRates(int userId);
-		Task<PulseRate> GetLastPulseRate(int userId);
-	}
+      void AddCirculation(Circulation circulation);
+		Task<IEnumerable<Circulation>> GetCirculations(int userId);
+		Task<Circulation> GetLastCirculation(int userId);
+      void DeleteCirculation(int circulationId);
+   }
 }

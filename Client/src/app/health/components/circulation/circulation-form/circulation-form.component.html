@@ -3,26 +3,28 @@
 </div>
 <div class="modal-body">
    <form #f="ngForm" novalidate>
-      <div class="form-group" *ngIf="dialogInput.data.bloodPressure$ | async as bloodPressure">
-         <label for="systolic">Blood Pressure</label>
-
-         <div class="input-group">
-            <input [(ngModel)]="bloodPressure.systolic" name="systolic" placeholder="systolic" id="systolic" type="number" class="form-control"
-               #systolic="ngModel">
-            <span class="input-group-addon">mmHg</span>
+      <div *ngIf="dialogInput.data | async as circulation">
+         <div class="form-group">
+            <label for="systolic">Blood Pressure</label>
+   
+            <div class="input-group">
+               <input [(ngModel)]="circulation.pressureSystolic" name="pressureSystolic" placeholder="systolic" id="systolic" type="number" class="form-control"
+                  #pressureSystolic="ngModel">
+               <span class="input-group-addon">mmHg</span>
+            </div>
+            <div class="input-group">
+               <input [(ngModel)]="circulation.pressureDiastolic" name="pressureDiastolic" placeholder="diastolic" id="diastolic" type="number" class="form-control"
+                  #pressureDiastolic="ngModel">
+               <span class="input-group-addon">mmHg</span>
+            </div>
          </div>
-         <div class="input-group">
-            <input [(ngModel)]="bloodPressure.diastolic" name="diastolic" placeholder="diastolic" id="diastolic" type="number" class="form-control"
-               #diastolic="ngModel">
-            <span class="input-group-addon">mmHg</span>
-         </div>
-      </div>
-
-      <div class="form-group" *ngIf="dialogInput.data.heartRate$ | async as heartRate">
-         <label for="pulse">Pulse Rate</label>
-         <div class="input-group">
-            <input [(ngModel)]="heartRate.rate" name="pulse" placeholder="Pulse Rate" id="pulse" type="number" class="form-control" #pulse="ngModel">
-            <span class="input-group-addon">bpm</span>
+   
+         <div class="form-group">
+            <label for="pulse">Heart Rate</label>
+            <div class="input-group">
+               <input [(ngModel)]="circulation.heartRate" name="heartRate" placeholder="Heart Rate" id="pulse" type="number" class="form-control" #heartRate="ngModel">
+               <span class="input-group-addon">BpM</span>
+            </div>
          </div>
       </div>
    </form>
@@ -30,6 +32,6 @@
 <div class="modal-footer">
    <div class="float-right">
       <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-      <button type="button" class="btn btn-primary" (click)="save(f.value)">Save</button>
+      <button type="button" class="btn btn-primary" (click)="save(f.value)" autofocus>Save</button>
    </div>
 </div>

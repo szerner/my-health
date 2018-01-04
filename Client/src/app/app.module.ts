@@ -6,27 +6,27 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './core/components/home/home.component';
-import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { HealthModule } from './health/health.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './core/services/auth.interceptor';
 import { AdminModule } from './admin/admin.module';
+// import { registerLocaleData } from '@angular/common';
+// import localeDe from '@angular/common/locales/de';
+
+// registerLocaleData(localeDe);
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    CoreModule,
-    SharedModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-     HealthModule,
-    AdminModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+   ],
+   imports: [
+      BrowserModule,
+      CoreModule,
+      SharedModule,
+      BrowserAnimationsModule,
+      AppRoutingModule,
+      HealthModule,
+      AdminModule
+   ],
+   providers: [],
+   bootstrap: [AppComponent]
 })
 export class AppModule { }

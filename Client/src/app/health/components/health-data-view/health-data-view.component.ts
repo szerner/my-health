@@ -11,6 +11,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { NotifyService } from '../../services/notify.service';
+import { Circulation } from '../../../shared/models/circulation';
 
 @Component({
    selector: 'app-health-data-view',
@@ -38,6 +39,9 @@ export class HealthDataViewComponent implements OnInit {
       else
          this.addCirculationData();
    }
+   get title() {
+      return this.weightMode ? "Your Body Weight" : "Your Blood Pressure and Heart Rate";
+   }
 
    // addHealthData() {
    //   let formComponent = this.weightMode ? WeightFormComponent : CirculationFormComponent;
@@ -54,24 +58,20 @@ export class HealthDataViewComponent implements OnInit {
       dialogInput.data = this.healthService.getLastBodyWeight();
       let dialogResult = await this.dialogService.showFormDialog(WeightFormComponent, dialogInput);
       if (dialogResult) {
-         let bodyweight = <BodyWeight>dialogResult.data;
-         bodyweight.userId = this.auth.currentUserId;
-         this.healthService.addBodyWeight(bodyweight).subscribe(() => this.notifyService.notify());
+         let bodyWeight = this.healthService.getNewBodyweight(dialogResult.data);
+         this.healthService.addBodyWeight(bodyWeight).subscribe(() => this.notifyService.notify());
       }
    }
 
    async addCirculationData() {
       let dialogInput = new DialogInput();
       dialogInput.title = "Your Blood Pressure and Heart Rate";
-      dialogInput.data = {
-         bloodPressure$: this.healthService.getLastBloodPressure(),
-         heartRate$: this.healthService.getLastPulseRate()
-      }
+      dialogInput.data = this.healthService.getLastCirculation();
       let dialogResult = await this.dialogService.showFormDialog(CirculationFormComponent, dialogInput);
       if (dialogResult) {
-         // let bodyweight = <BodyWeight>dialogResult.data;
-         // bodyweight.userId = this.auth.currentUserId;
-         // this.healthService.addBodyWeight(bodyweight).subscribe(() => this.notifyService.notify());
+         let circulation = this.healthService.getNewCirculation(dialogResult.data);
+         console.log(JSON.stringify(circulation));
+         this.healthService.addCirculation(circulation).subscribe(() => this.notifyService.notify());
       }
    }
 

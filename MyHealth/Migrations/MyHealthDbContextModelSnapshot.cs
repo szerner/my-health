@@ -21,26 +21,6 @@ namespace MyHealth.Migrations
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MyHealth.Core.Models.BloodPressure", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<byte>("Diastolic");
-
-                    b.Property<byte>("Systolic");
-
-                    b.Property<DateTime?>("Time")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("GetUtcDate()");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BloodPressures");
-                });
-
             modelBuilder.Entity("MyHealth.Core.Models.BodyWeight", b =>
                 {
                     b.Property<int>("Id")
@@ -59,20 +39,26 @@ namespace MyHealth.Migrations
                     b.ToTable("BodyWeights");
                 });
 
-            modelBuilder.Entity("MyHealth.Core.Models.PulseRate", b =>
+            modelBuilder.Entity("MyHealth.Core.Models.Circulation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<byte>("Rate");
+                    b.Property<int?>("HeartRate");
 
-                    b.Property<DateTime?>("Time");
+                    b.Property<int?>("PressureDiastolic");
+
+                    b.Property<int?>("PressureSystolic");
+
+                    b.Property<DateTime?>("Time")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GetUtcDate()");
 
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PulseRates");
+                    b.ToTable("Circulations");
                 });
 
             modelBuilder.Entity("MyHealth.Core.Models.User", b =>

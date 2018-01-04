@@ -10,7 +10,7 @@ import { DialogService } from './dialog.service';
 export class UserService {
    private readonly usersEndpoint = '/api/users';
 
-   constructor(private http: HttpClient, private auth: AuthService) { }
+   constructor(private http: HttpClient) { }
 
    getUsers(): Observable<User[]> {
       return this.http.get<User[]>(this.usersEndpoint);
@@ -32,9 +32,6 @@ export class UserService {
       return this.http.delete(this.usersEndpoint + '/' + id);
    }
 
-   get currentUser$(): Observable<User> {
-      let tokenUser = this.auth.tokenUser;
-      return tokenUser ? this.getUser(tokenUser.userId) : Observable.of(null);
-   }
+
 
 }

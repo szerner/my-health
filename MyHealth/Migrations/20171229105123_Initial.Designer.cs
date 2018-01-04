@@ -12,8 +12,8 @@ using System;
 namespace MyHealth.Migrations
 {
     [DbContext(typeof(MyHealthDbContext))]
-    [Migration("20171227173826_SeedAdmin")]
-    partial class SeedAdmin
+    [Migration("20171229105123_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,26 +21,6 @@ namespace MyHealth.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("MyHealth.Core.Models.BloodPressure", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<byte>("Diastolic");
-
-                    b.Property<byte>("Systolic");
-
-                    b.Property<DateTime?>("Time")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("GetUtcDate()");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BloodPressures");
-                });
 
             modelBuilder.Entity("MyHealth.Core.Models.BodyWeight", b =>
                 {
@@ -60,20 +40,26 @@ namespace MyHealth.Migrations
                     b.ToTable("BodyWeights");
                 });
 
-            modelBuilder.Entity("MyHealth.Core.Models.PulseRate", b =>
+            modelBuilder.Entity("MyHealth.Core.Models.Circulation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<byte>("Rate");
+                    b.Property<int?>("HeartRate");
 
-                    b.Property<DateTime?>("Time");
+                    b.Property<int?>("PressureDiastolic");
+
+                    b.Property<int?>("PressureSystolic");
+
+                    b.Property<DateTime?>("Time")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GetUtcDate()");
 
                     b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PulseRates");
+                    b.ToTable("Circulations");
                 });
 
             modelBuilder.Entity("MyHealth.Core.Models.User", b =>

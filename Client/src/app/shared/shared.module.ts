@@ -5,26 +5,28 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { DialogComponent } from './components/dialog/dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NgbModule.forRoot()
-  ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    NgbModule.forRoot().ngModule,
-    SpinnerComponent,
-    ConfirmDialogComponent,
-  ],
-  declarations: [
-    SpinnerComponent,
-    DialogComponent,
-    ConfirmDialogComponent
-  ],
-  entryComponents: [
-    ConfirmDialogComponent,
-  ]
+   imports: [
+      CommonModule,
+      NgbModule.forRoot()
+   ],
+   exports: [
+      CommonModule,
+      TranslateModule,
+      FormsModule,
+      NgbModule.forRoot().ngModule,
+      SpinnerComponent,
+      ConfirmDialogComponent,
+   ],
+   declarations: [
+      SpinnerComponent,
+      DialogComponent,
+      ConfirmDialogComponent
+   ],
+   entryComponents: [
+      ConfirmDialogComponent,
+   ]
 })
 export class SharedModule { }

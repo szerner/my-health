@@ -90,7 +90,7 @@ namespace MyHealth.Controllers
 
 			await unitOfWork.CompleteAsync();
 
-			return Ok(id);
+			return NoContent();
 		}
 	}
 }

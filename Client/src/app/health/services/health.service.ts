@@ -1,23 +1,54 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 import { BodyWeight } from '../../shared/models/body-weight';
-import { BloodPressure } from '../../shared/models/blood-pressure';
-import { PulseRate } from '../../shared/models/pulse-rate';
 import { AuthService } from '../../core/services/auth.service';
+import { Circulation } from '../../shared/models/circulation';
+import { Measurement } from '../../shared/models/measurement';
+import { BMI } from '../../shared/models/bmi';
 
 
 @Injectable()
 export class HealthService {
    private readonly healthEndpoint = '/api/healthdata';
    private readonly weightEndpoint = this.healthEndpoint + "/bodyweights";
-   private readonly pressureEndpoint = this.healthEndpoint + "/bloodpressures";
-   private readonly pulseEndpoint = this.healthEndpoint + "/pulserates";
+   private readonly circulationEndpoint = this.healthEndpoint + "/circulations";
 
-   constructor(private http: HttpClient, private auth: AuthService) { }
+   constructor(
+      private http: HttpClient,
+      private auth: AuthService
+   ) { }
 
    private get currentUserId() {
       return this.auth.currentUserId;
+   }
+
+   private getNewMeasurement(m: Measurement, copyFrom?: Measurement): Measurement {
+      if (copyFrom != null) {
+         for (var p in copyFrom) m[p] = copyFrom[p];
+      }
+      delete m.id;
+      m.userId = this.currentUserId;
+      m.time = new Date();
+
+      return m;
+   }
+
+   getBMI(weight: number, height: number) {
+      return new BMI(weight, height);
+   }
+
+
+   getNewCirculation(copyFrom?: Circulation): Circulation {
+      let o = new Circulation();
+      return this.getNewMeasurement(o, copyFrom) as Circulation;
+   }
+   getNewBodyweight(copyFrom?: BodyWeight): BodyWeight {
+      let o = new BodyWeight();
+      return this.getNewMeasurement(o, copyFrom) as BodyWeight;
    }
 
    addBodyWeight(weight: BodyWeight): Observable<BodyWeight> {
@@ -27,30 +58,25 @@ export class HealthService {
       return this.http.get<BodyWeight[]>(this.weightEndpoint + '/' + this.currentUserId);
    }
    getLastBodyWeight(): Observable<BodyWeight> {
-      return this.http.get<BodyWeight>(this.weightEndpoint + '/' + this.currentUserId + '/latest');
+      return this.http.get<BodyWeight>(this.weightEndpoint + '/' + this.currentUserId + '/latest')
+         .catch(err => Observable.of(new BodyWeight()));
    }
    deleteBodyWeight(weightId: number) {
       return this.http.delete(this.weightEndpoint + '/' + this.currentUserId + '/' + weightId);
    }
 
-   addBloodPressure(pressure: BloodPressure): Observable<BloodPressure> {
-      return this.http.post<BloodPressure>(this.pressureEndpoint, pressure);
+   addCirculation(circulation: Circulation): Observable<Circulation> {
+      return this.http.post<Circulation>(this.circulationEndpoint, circulation);
    }
-   getBloodPressures(): Observable<BloodPressure[]> {
-      return this.http.get<BloodPressure[]>(this.pressureEndpoint + '/' + this.currentUserId);
+   getCirculations(): Observable<Circulation[]> {
+      return this.http.get<Circulation[]>(this.circulationEndpoint + '/' + this.currentUserId);
    }
-   getLastBloodPressure(): Observable<BloodPressure> {
-      return this.http.get<BloodPressure>(this.pressureEndpoint + '/' + this.currentUserId + '/latest')
+   getLastCirculation(): Observable<Circulation> {
+      return this.http.get<Circulation>(this.circulationEndpoint + '/' + this.currentUserId + '/latest')
+         .catch(err => Observable.of(new Circulation())); //return empty Object if no data found
    }
-
-   addPulseRate(rate: PulseRate): Observable<PulseRate> {
-      return this.http.post<PulseRate>(this.pulseEndpoint, rate);
-   }
-   getPulseRates(): Observable<PulseRate[]> {
-      return this.http.get<PulseRate[]>(this.pulseEndpoint + '/' + this.currentUserId);
-   }
-   getLastPulseRate(): Observable<PulseRate> {
-      return this.http.get<PulseRate>(this.pulseEndpoint + '/' + this.currentUserId + '/latest')
+   deleteCirculation(circulationId: number) {
+      return this.http.delete(this.circulationEndpoint + '/' + this.currentUserId + '/' + circulationId);
    }
 
 }

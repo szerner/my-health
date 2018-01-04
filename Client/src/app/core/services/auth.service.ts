@@ -7,12 +7,17 @@ import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 import { TokenUser } from '../../shared/models/tokenUser';
 import { UserService } from './user.service';
 import { User } from '../../shared/models/user';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Injectable()
 export class AuthService {
+   private currentUser: User;
+   private userSubscription: Subscription;
 
-   constructor(private http: HttpClient) { }
+   constructor(
+      private http: HttpClient,
+      private userService: UserService) { }
 
    public getToken(): string {
       return localStorage.getItem('token');
@@ -26,11 +31,18 @@ export class AuthService {
 
    get isAdmin(): boolean {
       return this.isAuthenticated ? this.tokenUser.admin : false;
-      // return this.currentUser ? this.currentUser.admin : false;
    }
 
    get currentUserId(): number {
-      return this.tokenUser.userId;
+      let tokenUser = this.tokenUser;
+      return  tokenUser ? tokenUser.userId : null;
+   }
+
+   get currentUser$(): Observable<User> {
+      if (!this.currentUserId) return Observable.of(null);
+      if (this.currentUser != null && this.currentUserId == this.currentUser.id) return Observable.of(this.currentUser);
+
+      return this.userService.getUser(this.currentUserId);
    }
 
    get tokenUser(): TokenUser {
@@ -43,7 +55,7 @@ export class AuthService {
          userId: parseInt(decodeToken["userId"]),
          userName: decodeToken["userName"],
          admin: decodeToken["userRole"] == "Admin"
-      }
+      };
    }
 
 
@@ -53,6 +65,7 @@ export class AuthService {
          .map(result => {
             if (result && result['token']) {
                localStorage.setItem('token', result['token']);
+               this.userSubscription = this.currentUser$.subscribe(user => this.currentUser = user);
                return true;
             }
             else return false;
@@ -61,6 +74,7 @@ export class AuthService {
 
    logout() {
       localStorage.removeItem('token');
+      if (this.userSubscription) this.userSubscription.unsubscribe();
    }
 
 }

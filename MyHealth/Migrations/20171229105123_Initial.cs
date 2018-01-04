@@ -10,22 +10,6 @@ namespace MyHealth.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "BloodPressures",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Diastolic = table.Column<byte>(nullable: false),
-                    Systolic = table.Column<byte>(nullable: false),
-                    Time = table.Column<DateTime>(nullable: true, defaultValueSql: "GetUtcDate()"),
-                    UserId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BloodPressures", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BodyWeights",
                 columns: table => new
                 {
@@ -41,18 +25,20 @@ namespace MyHealth.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PulseRates",
+                name: "Circulations",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Rate = table.Column<byte>(nullable: false),
-                    Time = table.Column<DateTime>(nullable: true),
+                    HeartRate = table.Column<int>(nullable: true),
+                    PressureDiastolic = table.Column<int>(nullable: true),
+                    PressureSystolic = table.Column<int>(nullable: true),
+                    Time = table.Column<DateTime>(nullable: true, defaultValueSql: "GetUtcDate()"),
                     UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PulseRates", x => x.Id);
+                    table.PrimaryKey("PK_Circulations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,13 +64,10 @@ namespace MyHealth.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BloodPressures");
-
-            migrationBuilder.DropTable(
                 name: "BodyWeights");
 
             migrationBuilder.DropTable(
-                name: "PulseRates");
+                name: "Circulations");
 
             migrationBuilder.DropTable(
                 name: "Users");

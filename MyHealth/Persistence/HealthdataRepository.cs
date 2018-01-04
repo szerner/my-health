@@ -41,48 +41,31 @@ namespace MyHealth.Persistence
          context.BodyWeights.Remove(context.BodyWeights.Single(d => d.Id == weightId));
       }
 
-		public void AddBloodPressure(BloodPressure pressure)
+		public void AddCirculation(Circulation circulation)
 		{
-			context.BloodPressures.Add(pressure);
+			context.Circulations.Add(circulation);
 		}
 
-		public async Task<IEnumerable<BloodPressure>> GetBloodPressures(int userId)
+		public async Task<IEnumerable<Circulation>> GetCirculations(int userId)
 		{
-			return await context.BloodPressures
+			return await context.Circulations
             .Where(measurement => measurement.UserId == userId)
             .OrderByDescending(measurement => measurement.Time)
             .ToListAsync();
 		}
 
-		public async Task<BloodPressure> GetLastBloodPressure(int userId)
+		public async Task<Circulation> GetLastCirculation(int userId)
 		{
-			return await context.BloodPressures
+			return await context.Circulations
 				.Where(measurement => measurement.UserId == userId)
 				.OrderByDescending(measurement => measurement.Time)
 				.FirstOrDefaultAsync();
 		}
 
-		public void AddPulseRate(PulseRate rate)
-		{
-			context.PulseRates.Add(rate);
-		}
-
-		public async Task<IEnumerable<PulseRate>> GetPulseRates(int userId)
-		{
-			return await context.PulseRates
-            .Where(measurement => measurement.UserId == userId)
-            .OrderByDescending(measurement => measurement.Time)
-            .ToListAsync();
-		}
-
-		public async Task<PulseRate> GetLastPulseRate(int userId)
-		{
-			return await context.PulseRates
-				.Where(measurement => measurement.UserId == userId)
-				.OrderByDescending(measurement => measurement.Time)
-				.FirstOrDefaultAsync();
-		}
-
+      public void DeleteCirculation(int circulationId)
+      {
+         context.Circulations.Remove(context.Circulations.Single(d => d.Id == circulationId));
+      }
 
 	}
 }

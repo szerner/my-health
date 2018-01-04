@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { HealthService } from '../../../services/health.service';
+import { HealthChartComponent } from '../../health-chart/health-chart.component';
 
 @Component({
-  selector: 'app-weight-chart',
-  templateUrl: './weight-chart.component.html',
-  styleUrls: ['./weight-chart.component.css']
+   templateUrl: '../../health-chart/health-chart.component.html'
 })
-export class WeightChartComponent implements OnInit {
 
-  constructor() { }
+export class WeightChartComponent extends HealthChartComponent {
 
-  ngOnInit() {
-  }
+   loadData() {
+      this.healthService.getBodyWeights()
+         .subscribe(weightData => {
+            this.resetDatasets();
+            this.addDataset({
+               label: 'Body Weight [kg]', borderColor: 'rgb(0, 123, 255)',
+               data: weightData.map(bodyWeight => { return { x: bodyWeight.time, y: bodyWeight.weight } })
+            });
+            this.refresh();
+         });
+   }
+
 
 }

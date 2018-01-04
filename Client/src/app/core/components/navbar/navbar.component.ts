@@ -17,8 +17,8 @@ export class NavbarComponent {
 
    async login() {
       let isAuthenticated = await this.dialogService.showLoginDialog();
-      if (!isAuthenticated) return;
-      this.router.navigate([this.auth.isAdmin ? "/admin" : "/health"]);
+      if (isAuthenticated) 
+         this.router.navigate([this.auth.isAdmin ? "/admin" : "/health"]);
    }
 
    logout() {
@@ -27,7 +27,7 @@ export class NavbarComponent {
    }
 
    async editProfile() {
-      let user$ = this.userService.currentUser$;
+      let user$ = this.auth.currentUser$;
       let dialogInput = new DialogInput();
       dialogInput.title = "Edit Profile";
       dialogInput.data = user$;

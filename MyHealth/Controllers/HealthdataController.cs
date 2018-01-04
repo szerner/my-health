@@ -43,64 +43,53 @@ namespace MyHealth.Controllers
 		public async Task<IActionResult> GetLastBodyWeight(int userId)
 		{
 			var weight = await repository.GetLastBodyWeight(userId);
-			return Ok(weight);
+         if (weight == null)
+            return NotFound();
+
+         return Ok(weight);
 		}
 		[HttpDelete("bodyweights/{userId}/{weightId}")]
 		public async Task<IActionResult> DeleteBodyWeight(int weightId)
 		{
 			repository.DeleteBodyWeight(weightId);
          await unitOfWork.CompleteAsync();
-			return Ok();
+			return NoContent();
 		}
 
-		[HttpPost("bloodpressures")]
-		public async Task<IActionResult> AddBloodPressure([FromBody] BloodPressure pressure)
+		[HttpPost("circulations")]
+		public async Task<IActionResult> AddCirculation([FromBody] Circulation circulation)
 		{
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
-			repository.AddBloodPressure(pressure);
+			repository.AddCirculation(circulation);
 			await unitOfWork.CompleteAsync();
 
-			return Ok(pressure);
+			return Ok(circulation);
 		}
-		[HttpGet("bloodpressures/{id}")]
-		public async Task<IActionResult> GetBloodPressures(int id)
+		[HttpGet("circulations/{id}")]
+		public async Task<IActionResult> GetCirculations(int id)
 		{
-			var pressures = await repository.GetBloodPressures(id);
-			return Ok(pressures);
+			var circulations = await repository.GetCirculations(id);
+			return Ok(circulations);
 		}
-		[HttpGet("bloodpressures/{id}/latest")]
-		public async Task<IActionResult> GetLastBloodPressure(int id)
+		[HttpGet("circulations/{id}/latest")]
+		public async Task<IActionResult> GetLastCirculations(int id)
 		{
-			var pressure = await repository.GetLastBloodPressure(id);
-			return Ok(pressure);
+			var circulation = await repository.GetLastCirculation(id);
+
+         if (circulation == null) return NotFound();
+
+         return Ok(circulation);
 		}
 
-		[HttpPost("pulserates")]
-		public async Task<IActionResult> AddPulseRate([FromBody] PulseRate rate)
-		{
-			if (!ModelState.IsValid)
-				return BadRequest(ModelState);
-
-			repository.AddPulseRate(rate);
-			await unitOfWork.CompleteAsync();
-
-			return Ok(rate);
-		}
-
-		[HttpGet("pulserates/{id}")]
-		public async Task<IActionResult> GetPulseRates(int id)
-		{
-			var rates = await repository.GetPulseRates(id);
-			return Ok(rates);
-		}
-		[HttpGet("pulserates/{id}/latest")]
-		public async Task<IActionResult> GetLastPulseRate(int id)
-		{
-			var rate = await repository.GetLastPulseRate(id);
-			return Ok(rate);
-		}
+      [HttpDelete("circulations/{userId}/{circulationId}")]
+      public async Task<IActionResult> DeleteCirculation(int circulationId)
+      {
+         repository.DeleteCirculation(circulationId);
+         await unitOfWork.CompleteAsync();
+         return NoContent();
+      }
 
 	}
 }
