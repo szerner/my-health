@@ -1,27 +1,29 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input, OnChanges } from '@angular/core';
 import { ChartComponent } from 'angular2-chartjs';
-import { HealthService } from '../../services/health.service';
-import { NotifyService } from '../../services/notify.service';
 import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
    templateUrl: './health-chart.component.html'
 })
 
-export class HealthChartComponent implements OnInit {
+export abstract class HealthChartComponent implements OnChanges {
+   @Input() data;
    @ViewChild(ChartComponent) chart: ChartComponent;
    chartData;
    chartOptions;
 
-   constructor(
-      protected healthService: HealthService,
-      protected notifyService: NotifyService
-   ) { }
-
-   ngOnInit() {
+   constructor() {
       this.chartOptions = {
          responsive: true,
          maintainAspectRatio: true,
+         layout: {
+            padding: {
+               left: 10,
+               right: 10,
+               top: 20,
+               bottom: 10
+            }
+         }
 
          tooltips: {
             displayColors: false
@@ -41,8 +43,8 @@ export class HealthChartComponent implements OnInit {
 
          elements: {
             line: {
-               fill : false,
-               borderWidth : 2,
+               fill: false,
+               borderWidth: 2,
                tension: 0.2
             }
          },
@@ -55,20 +57,19 @@ export class HealthChartComponent implements OnInit {
          datasets: [
          ]
       };
-
-      this.notifyService.notification$.subscribe(() => this.loadData());
-      this.loadData();
    }
 
-   loadData() {
+   ngOnChanges() {
+      this.initChart();
    }
+
+   abstract initChart();
 
    hasData(): boolean {
       return this.chartData.datasets.reduce((total, ds) => total + ds.data.length, 0) > 0;
    }
 
    addDataset(ds: any) {
-
       this.chartData.datasets.push(ds);
    }
 

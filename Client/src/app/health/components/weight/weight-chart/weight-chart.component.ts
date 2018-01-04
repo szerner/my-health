@@ -1,24 +1,21 @@
 import { Component } from '@angular/core';
-import { HealthService } from '../../../services/health.service';
 import { HealthChartComponent } from '../../health-chart/health-chart.component';
 
 @Component({
-   templateUrl: '../../health-chart/health-chart.component.html'
+   selector: 'weight-chart',
+   templateUrl: '../../health-chart/health-chart.component.html',
+   styles: ['chart { background-color: #f5f5f5; }']
 })
 
 export class WeightChartComponent extends HealthChartComponent {
 
-   loadData() {
-      this.healthService.getBodyWeights()
-         .subscribe(weightData => {
-            this.resetDatasets();
-            this.addDataset({
-               label: 'Body Weight [kg]', borderColor: 'rgb(0, 123, 255)',
-               data: weightData.map(bodyWeight => { return { x: bodyWeight.time, y: bodyWeight.weight } })
-            });
-            this.refresh();
-         });
+   initChart() {
+      this.resetDatasets();
+      this.addDataset({
+         label: 'Body Weight [kg]', borderColor: 'rgb(0, 123, 255)',
+         data: this.data.map(bodyWeight => { return { x: bodyWeight.time, y: bodyWeight.weight } })
+      });
+      this.refresh();
    }
-
 
 }

@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'spinner',
   template: `
-    <i [ngClass]="sizeClass" class="fa fa-circle-o-notch fa-spin"></i>
+    <div class="text-center"><i [ngClass]="sizeClass" class="fa fa-circle-o-notch fa-spin"></i></div>
   `
 })
 export class SpinnerComponent {

@@ -14,30 +14,11 @@ const routes: Routes = [
     path: '', component: HealthDataComponent,
     children: [
       { path: '', redirectTo: 'circulation', pathMatch: 'full'},
-      {
-        path: 'circulation', component: HealthDataViewComponent,
-        children: [
-          { path: '', redirectTo: 'table', pathMatch: 'full'},
-          { path: 'table', component: CirculationTableComponent},
-          { path: 'chart', component: CirculationChartComponent},
-        ]
-      },
-      {
-        path: 'weight', component: HealthDataViewComponent,
-        children: [
-          { path: '', redirectTo: 'table', pathMatch: 'full' },
-          { path: 'table', component: WeightTableComponent },
-          { path: 'chart', component: WeightChartComponent },
-        ]
-      },
-
+      { path: 'circulation', component: HealthDataViewComponent, canActivate: [AuthGuard] },
+      { path: 'weight', component: HealthDataViewComponent, canActivate: [AuthGuard] }
     ]
   }
 ];
-// const routes: Routes = [
-//   { path: '', redirectTo: 'health-data', pathMatch: 'full' },
-//   { path: 'health-data', component: HealthDataComponent }
-// ];
 
 @NgModule({
   imports: [

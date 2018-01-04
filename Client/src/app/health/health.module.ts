@@ -10,9 +10,7 @@ import { WeightTableComponent } from './components/weight/weight-table/weight-ta
 import { WeightFormComponent } from './components/weight/weight-form/weight-form.component';
 import { CirculationFormComponent } from './components/circulation/circulation-form/circulation-form.component';
 import { HealthService } from './services/health.service';
-import { NotifyService } from './services/notify.service';
 import { ChartModule } from 'angular2-chartjs';
-import { HealthChartComponent } from './components/health-chart/health-chart.component';
 
 @NgModule({
    imports: [
@@ -28,16 +26,14 @@ import { HealthChartComponent } from './components/health-chart/health-chart.com
       WeightChartComponent,
       WeightTableComponent,
       CirculationFormComponent,
-      WeightFormComponent,
-      HealthChartComponent
+      WeightFormComponent
    ],
    entryComponents: [
       WeightFormComponent,
       CirculationFormComponent,
    ],
    providers: [
-      HealthService,
-      NotifyService
+      HealthService
    ]
 
 })

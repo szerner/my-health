@@ -1,22 +1,35 @@
 <h4>{{title}}</h4>
-<div class="row mb-3">
-  <div class="col-xs-11">
-    <ul class="nav nav-pills">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="table" routerLinkActive="active">
-          <i class="fa fa-table" aria-hidden="true"></i> Table</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="chart" routerLinkActive="active">
-          <i class="fa fa-line-chart" aria-hidden="true"></i> Chart</a>
-      </li>
-    </ul>
-  </div>
-  <div class="col">
-    <button class="btn btn-primary float-right" (click)="addHealthData()">
-      <i class="fa fa-plus" aria-hidden="true"></i>
-    </button>
-  </div>
-</div>
+<div class="row">
 
-<router-outlet></router-outlet>
+   <div class="btn-group btn-group-toggle col" data-toggle="buttons">
+      <label class="btn btn-light" [class.active]="tableMode" (click)="tableMode=true">
+         <input type="radio" name="viewMode" autocomplete="off">
+         <i class="fa fa-table" aria-hidden="true"></i> Table
+      </label>
+      <label class="btn btn-light" [class.active]="!tableMode" (click)="tableMode=false">
+         <input type="radio" name="viewMode" autocomplete="off">
+         <i class="fa fa-line-chart" aria-hidden="true"></i> Chart
+      </label>
+   </div>
+   <div class="col">
+      <button class="btn btn-primary float-right" (click)="addData()">
+         <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+   </div>
+</div>
+<div *ngIf="data$ | async as data">
+   <spinner *ngIf="!data" [size]="2"></spinner>
+   <div *ngIf="data.length>0; else noData">
+      <div *ngIf="tableMode">
+         <weight-table *ngIf="weightMode" [data]="data" [user$]="user$" (onDelete)="deleteData($event)"></weight-table>
+         <circulation-table *ngIf="!weightMode" [data]="data" (onDelete)="deleteData($event)"></circulation-table>
+      </div>
+      <div *ngIf="!tableMode">
+         <weight-chart *ngIf="weightMode" [data]="data"></weight-chart>
+         <circulation-chart *ngIf="!weightMode" [data]="data"></circulation-chart>
+      </div>
+   </div>
+   <ng-template #noData>
+      <p>You don't have any data in this section.</p>
+   </ng-template>
+</div>

@@ -1,6 +1,3 @@
 <div *ngIf="chartData.datasets.length>0">
-   <chart *ngIf="hasData(); else noData" [type]="'line'" [data]="chartData" [options]="chartOptions"></chart>
-   <ng-template #noData>
-      <p>You don't have any data in this section.</p>
-   </ng-template>
+   <chart [type]="'line'" [data]="chartData" [options]="chartOptions"></chart>
 </div>
