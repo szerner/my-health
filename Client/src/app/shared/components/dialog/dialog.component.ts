@@ -1,16 +1,15 @@
 import { Component, Input, Injector } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { DialogResult } from '../../../shared/models/dialog-result';
-import { UserService } from '../../../core/services/user.service';
-import { DialogInput } from '../../models/dialog-input';
+import { DialogResult } from '@models/dialog-result';
+import { DialogInput } from '@models/dialog-input';
 
 @Component({
   template: ''
 })
-export class DialogComponent {
+export abstract class DialogComponent {
   @Input() dialogInput: DialogInput;
 
-  constructor(public activeModal: NgbActiveModal, injector?: Injector) { }
+  constructor(public activeModal: NgbActiveModal, injector: Injector) { }
 
   cancel() {
     this.activeModal.close(null);

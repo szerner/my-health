@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService } from '../../../core/services/dialog.service';
+import { DialogService } from '@services/dialog.service';
 import { WeightFormComponent } from '../weight/weight-form/weight-form.component';
 import { HealthService } from '../../services/health.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { CirculationFormComponent } from '../circulation/circulation-form/circulation-form.component';
-import { DialogInput } from '../../../shared/models/dialog-input';
-import { AuthService } from '../../../core/services/auth.service';
+import { DialogInput } from '@models/dialog-input';
+import { AuthService } from '@services/auth.service';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../../../shared/models/user';
-import { BodyWeight } from '../../../shared/models/body-weight';
-import { Circulation } from '../../../shared/models/circulation';
+import 'rxjs/add/operator/delay';
+import { User } from '@models/user';
+import { BodyWeight } from '@models/body-weight';
+import { Circulation } from '@models/circulation';
 
 @Component({
-   templateUrl: './health-data-view.component.html',
-   styleUrls: ['./health-data-view.component.css']
+   templateUrl: './health-data-view.component.html'
 })
-export class HealthDataViewComponent implements OnInit {
+export class HealthDataViewComponent {
    data$: Observable<(BodyWeight | Circulation)[]>;
    user$: Observable<User>;
    weightMode: boolean;
@@ -26,15 +26,16 @@ export class HealthDataViewComponent implements OnInit {
       private auth: AuthService,
       private dialogService: DialogService,
       private healthService: HealthService
-   ) { }
-
-   ngOnInit() {
-      this.route.url.subscribe(urlSegments => {
-         
+   ) {
+      this.user$ = auth.currentUser$;
+      route.url.subscribe(urlSegments => {
          this.weightMode = urlSegments.findIndex(s => s.path == 'weight') > -1;
-         this.user$ = this.auth.currentUser$;
          this.loadData();
       });
+      route.paramMap.subscribe(
+         (params: ParamMap) => {
+            this.tableMode = params.has('view') ? params.get('view') == 'table' : true;
+         });
    }
 
    loadData() {

@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/map';
-import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
-import { Component } from '@angular/compiler/src/core';
-import { DialogComponent } from '../../shared/components/dialog/dialog.component';
-import { WeightFormComponent } from '../../health/components/weight/weight-form/weight-form.component';
+import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap/modal/modal';
-import { DialogResult } from '../../shared/models/dialog-result';
-import { DialogInput } from '../../shared/models/dialog-input';
+import { DialogResult } from '@models/dialog-result';
+import { DialogInput } from '@models/dialog-input';
 import { LoginFormComponent } from '../components/login-form/login-form.component';
 
 @Injectable()

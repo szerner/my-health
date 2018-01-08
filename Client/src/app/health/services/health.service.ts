@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/of';
-import { BodyWeight } from '../../shared/models/body-weight';
-import { AuthService } from '../../core/services/auth.service';
-import { Circulation } from '../../shared/models/circulation';
-import { Measurement } from '../../shared/models/measurement';
-import { BMI } from '../../shared/models/bmi';
+import { BodyWeight } from '@models/body-weight';
+import { AuthService } from '@services/auth.service';
+import { Circulation } from '@models/circulation';
+import { Measurement } from '@models/measurement';
+import { BMI } from '@models/bmi';
 
 
 @Injectable()

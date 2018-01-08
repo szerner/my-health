@@ -3,7 +3,7 @@
 </div>
 <div class="modal-body">
   <form #f="ngForm" novalidate>
-    <div class="form-group" *ngIf="dialogInput.data | async as bodyWeight">
+    <div class="form-group" *ngIf="dialogInput.data as bodyWeight">
       <label for="weight">Weight</label>
       <div class="input-group">
          <input [(ngModel)]="bodyWeight.weight" name="weight" id="weight" type="number" min="30" max="250" class="form-control" required

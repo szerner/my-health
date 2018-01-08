@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
-import { TokenUser } from '../../shared/models/tokenUser';
+import { TokenUser } from '@models/tokenUser';
 import { UserService } from './user.service';
-import { User } from '../../shared/models/user';
-import { Subscription } from 'rxjs/Subscription';
+import { User } from '@models/user';
 
 
 @Injectable()

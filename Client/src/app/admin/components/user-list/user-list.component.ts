@@ -1,25 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../shared/models/user';
+import { User } from '@models/user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
-import { DialogService } from '../../../core/services/dialog.service';
-import { DialogResult } from '../../../shared/models/dialog-result';
-import { UserService } from '../../../core/services/user.service';
-import { DialogInput } from '../../../shared/models/dialog-input';
+import { DialogService } from '@services/dialog.service';
+import { DialogResult } from '@models/dialog-result';
+import { UserService } from '@services/user.service';
+import { DialogInput } from '@models/dialog-input';
 import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({
-   selector: 'app-user-list',
-   templateUrl: './user-list.component.html',
-   styleUrls: ['./user-list.component.css']
+   templateUrl: './user-list.component.html'
 })
 export class UserListComponent implements OnInit {
    users: User[];
-   // users: User[]=[];
    constructor(private userService: UserService, private dialogService: DialogService) { }
 
    ngOnInit() {
-      // this.userService.getUsers().take(1).subscribe(users => this.users = users);
       this.loadUsers();
    }
 

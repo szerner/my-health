@@ -10,23 +10,22 @@ import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
    imports: [
       CommonModule,
-      NgbModule.forRoot()
+      NgbModule
    ],
    exports: [
       CommonModule,
       TranslateModule,
       FormsModule,
-      NgbModule.forRoot().ngModule,
+      NgbModule,
       SpinnerComponent,
-      ConfirmDialogComponent,
+      ConfirmDialogComponent
    ],
    declarations: [
       SpinnerComponent,
-      DialogComponent,
       ConfirmDialogComponent
    ],
    entryComponents: [
-      ConfirmDialogComponent,
+      ConfirmDialogComponent
    ]
 })
 export class SharedModule { }

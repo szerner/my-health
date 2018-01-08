@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserListComponent } from './components/user-list/user-list.component';
-import { UserFormComponent } from './components/user-form/user-form.component';
-import { AdminComponent } from './components/admin/admin.component';
+import { AuthGuard } from '@services/auth-guard.service';
+import { AdminAuthGuard } from '@services/admin-auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'users', pathMatch: 'full' },
-  { path: 'users', component: UserListComponent },
-  { path: 'users/new', component: UserFormComponent },
-  { path: 'users/:id', component: UserFormComponent }
+  { path: 'users', component: UserListComponent }
 ];
 
 @NgModule({

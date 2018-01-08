@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../../shared/models/user';
-import { AuthService } from './auth.service';
-import { DialogInput } from '../../shared/models/dialog-input';
-import { DialogService } from './dialog.service';
+import { User } from '@models/user';
 
 @Injectable()
 export class UserService {
@@ -31,7 +28,5 @@ export class UserService {
    deleteUser(id: number) {
       return this.http.delete(this.usersEndpoint + '/' + id);
    }
-
-
 
 }

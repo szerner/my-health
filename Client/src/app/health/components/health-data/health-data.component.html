@@ -1,11 +1,13 @@
-  <ul class="nav nav-tabs mb-3">
+  <h2>Your Health Data</h2>
+  <p>Enter your blood pressure, heart rate and body weight and evaluate your data as tables and charts.</p>
+  <ul class="nav nav-tabs my-4">
     <li class="nav-item">
-      <a class="nav-link" routerLink="circulation" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['circulation', {view: viewMode}]" routerLinkActive="active">
         <i class="fa fa-heartbeat" aria-hidden="true"></i>
         Circulation</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink="weight" routerLinkActive="active">
+      <a class="nav-link"  [routerLink]="['weight', {view: viewMode}]" routerLinkActive="active">
         <i class="fa fa-balance-scale" aria-hidden="true"></i> Body Weight</a>
     </li>
   </ul>

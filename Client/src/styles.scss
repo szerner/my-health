@@ -16,3 +16,20 @@ app-root > .container {
   text-align: right;
 //   padding-right: 0!important;
 }
+
+.nav-tabs .nav-link {
+    border-top-color: rgb(233, 236, 239);
+    border-right-color: rgb(233, 236, 239);
+    border-bottom-color: rgb(221, 221, 221);
+    border-left-color: rgb(233, 236, 239);
+    background-color: #f8f9fa;
+    color: #495057;
+    &.active, &:hover {
+       color: #007bff;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+   margin-top: 1rem;
+   margin-bottom: 1.5rem;
+}

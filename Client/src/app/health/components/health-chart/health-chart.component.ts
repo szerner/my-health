@@ -1,6 +1,5 @@
 import { Component, ViewChild, Input, OnChanges } from '@angular/core';
 import { ChartComponent } from 'angular2-chartjs';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
    templateUrl: './health-chart.component.html'
@@ -23,7 +22,7 @@ export abstract class HealthChartComponent implements OnChanges {
                top: 20,
                bottom: 10
             }
-         }
+         },
 
          tooltips: {
             displayColors: false

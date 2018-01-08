@@ -11,6 +11,7 @@ import { WeightFormComponent } from './components/weight/weight-form/weight-form
 import { CirculationFormComponent } from './components/circulation/circulation-form/circulation-form.component';
 import { HealthService } from './services/health.service';
 import { ChartModule } from 'angular2-chartjs';
+import { DialogService } from '../core/services/dialog.service';
 
 @NgModule({
    imports: [
@@ -30,10 +31,11 @@ import { ChartModule } from 'angular2-chartjs';
    ],
    entryComponents: [
       WeightFormComponent,
-      CirculationFormComponent,
+      CirculationFormComponent
    ],
    providers: [
-      HealthService
+      HealthService,
+      DialogService
    ]
 
 })

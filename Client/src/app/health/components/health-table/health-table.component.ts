@@ -2,8 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { HealthService } from '../../services/health.service';
 
 @Component({
-  template: '',
-  styleUrls: ['./health-table.component.css']
+  template: ''
 })
 export abstract class HealthTableComponent {
    @Input() data: any[];

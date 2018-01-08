@@ -1,12 +1,11 @@
 <h4>{{title}}</h4>
 <div class="row">
-
    <div class="btn-group btn-group-toggle col" data-toggle="buttons">
-      <label class="btn btn-light" [class.active]="tableMode" (click)="tableMode=true">
+      <label class="btn btn-light" [class.active]="tableMode" [routerLink]="['./', {view: 'table'}]">
          <input type="radio" name="viewMode" autocomplete="off">
          <i class="fa fa-table" aria-hidden="true"></i> Table
       </label>
-      <label class="btn btn-light" [class.active]="!tableMode" (click)="tableMode=false">
+      <label class="btn btn-light" [class.active]="!tableMode" [routerLink]="['./', {view: 'chart'}]">
          <input type="radio" name="viewMode" autocomplete="off">
          <i class="fa fa-line-chart" aria-hidden="true"></i> Chart
       </label>

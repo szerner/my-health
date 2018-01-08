@@ -1,11 +1,10 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { DialogComponent } from '../../../shared/components/dialog/dialog.component';
-import { AuthService } from '../../services/auth.service';
+import { DialogComponent } from '@shared/components/dialog/dialog.component';
+import { AuthService } from '@services/auth.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.css']
+  templateUrl: './login-form.component.html'
 })
 export class LoginFormComponent extends DialogComponent {
   invalidLogin;
