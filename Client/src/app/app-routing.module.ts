@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './core/components/home/home.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
-import { AuthGuard } from '@services/auth-guard.service';
-import { AdminAuthGuard } from '@services/admin-auth-guard.service';
+import { AuthGuard } from 'services/auth-guard.service';
+import { AdminAuthGuard } from 'services/admin-auth-guard.service';
 import { AccessDeniedComponent } from './core/components/access-denied/access-denied.component';
 import { HealthDataComponent } from './health/components/health-data/health-data.component';
 

@@ -5,9 +5,8 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
-import { TokenUser } from '@models/tokenUser';
+import { TokenUser, User } from 'models';
 import { UserService } from './user.service';
-import { User } from '@models/user';
 
 
 @Injectable()

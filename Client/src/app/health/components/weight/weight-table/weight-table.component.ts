@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HealthService } from '../../../services/health.service';
-import { User } from '@models/user';
+import { User } from 'models';
 import { Observable } from 'rxjs/Observable';
 import { HealthTableComponent } from '../../health-table/health-table.component';
 

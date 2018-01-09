@@ -1,7 +1,6 @@
 import { Component, Input, Injector } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { DialogResult } from '@models/dialog-result';
-import { DialogInput } from '@models/dialog-input';
+import { DialogInput, DialogResult } from 'models';
 
 @Component({
   template: ''

@@ -24,7 +24,7 @@
          <circulation-table *ngIf="!weightMode" [data]="data" (onDelete)="deleteData($event)"></circulation-table>
       </div>
       <div *ngIf="!tableMode">
-         <weight-chart *ngIf="weightMode" [data]="data"></weight-chart>
+         <weight-chart *ngIf="weightMode" [data]="data"  [user$]="user$"></weight-chart>
          <circulation-chart *ngIf="!weightMode" [data]="data"></circulation-chart>
       </div>
    </div>

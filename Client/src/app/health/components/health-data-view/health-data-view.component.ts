@@ -1,16 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService } from '@services/dialog.service';
-import { WeightFormComponent } from '../weight/weight-form/weight-form.component';
+import { DialogService } from 'services/dialog.service';
+import { AuthService } from 'services/auth.service';
 import { HealthService } from '../../services/health.service';
+import { WeightFormComponent } from '../weight/weight-form/weight-form.component';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { CirculationFormComponent } from '../circulation/circulation-form/circulation-form.component';
-import { DialogInput } from '@models/dialog-input';
-import { AuthService } from '@services/auth.service';
+import { DialogInput, User, BodyWeight, Circulation } from 'models';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/delay';
-import { User } from '@models/user';
-import { BodyWeight } from '@models/body-weight';
-import { Circulation } from '@models/circulation';
 
 @Component({
    templateUrl: './health-data-view.component.html'

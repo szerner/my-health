@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogComponent } from 'shared/components/confirm-dialog/confirm-dialog.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap/modal/modal';
-import { DialogResult } from '@models/dialog-result';
-import { DialogInput } from '@models/dialog-input';
+import { DialogInput, DialogResult } from 'models';
 import { LoginFormComponent } from '../components/login-form/login-form.component';
 
 @Injectable()

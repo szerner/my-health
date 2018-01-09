@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { AuthService } from '@services/auth.service';
-import { DialogService } from '@services/dialog.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'services/auth.service';
+import { DialogService } from 'services/dialog.service';
+import { UserService } from 'services/user.service';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
-import { DialogInput } from '@models/dialog-input';
-import { UserService } from '@services/user.service';
-import { User } from '@models/user';
+import { User, DialogInput } from 'models';
 
 @Component({
    selector: 'main-nav',

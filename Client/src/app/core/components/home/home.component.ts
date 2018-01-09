@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DialogService } from '@services/dialog.service';
-import { AuthService } from '@services/auth.service';
+import { DialogService } from 'services/dialog.service';
+import { AuthService } from 'services/auth.service';
 
 @Component({
   templateUrl: './home.component.html'

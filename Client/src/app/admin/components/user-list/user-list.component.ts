@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '@models/user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/take';
-import { DialogService } from '@services/dialog.service';
-import { DialogResult } from '@models/dialog-result';
-import { UserService } from '@services/user.service';
-import { DialogInput } from '@models/dialog-input';
+import { DialogService } from 'services/dialog.service';
+import { UserService } from 'services/user.service';
+import { User, DialogInput, DialogResult } from 'models';
 import { UserFormComponent } from '../user-form/user-form.component';
 
 @Component({

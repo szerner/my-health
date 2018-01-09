@@ -1,5 +1,6 @@
 import { Component, ViewChild, Input, OnChanges } from '@angular/core';
 import { ChartComponent } from 'angular2-chartjs';
+import { HealthService } from '../../services/health.service';
 
 @Component({
    templateUrl: './health-chart.component.html'
@@ -11,7 +12,7 @@ export abstract class HealthChartComponent implements OnChanges {
    chartData;
    chartOptions;
 
-   constructor() {
+   constructor(protected healthService: HealthService) {
       this.chartOptions = {
          responsive: true,
          maintainAspectRatio: true,
@@ -35,6 +36,25 @@ export abstract class HealthChartComponent implements OnChanges {
                   time: {
                      unit: 'day',
                      tooltipFormat: 'l'
+                  }
+               }
+            ],
+            yAxes: [
+               {
+                  id: 'y-default',
+                  type: 'linear',
+                  position: 'left'
+               },
+               {
+                  id: 'y-bmi',
+                  type: 'linear',
+                  position: 'right',
+                  color: 'rgba(220, 53, 69, 0.1)',
+                  display: false,
+                  ticks: {
+                     min: 16,
+                     max: 30,
+                     fontColor: 'rgb(220, 53, 69)'
                   }
                }
             ]

@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { DialogComponent } from '@shared/components/dialog/dialog.component';
-import { AuthService } from '@services/auth.service';
+import { DialogComponent } from 'shared/components/dialog/dialog.component';
+import { AuthService } from 'services/auth.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

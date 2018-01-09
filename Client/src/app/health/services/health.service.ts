@@ -2,12 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
-import { BodyWeight } from '@models/body-weight';
-import { AuthService } from '@services/auth.service';
-import { Circulation } from '@models/circulation';
-import { Measurement } from '@models/measurement';
-import { BMI } from '@models/bmi';
-
+import { BodyWeight, Circulation, Measurement, BMI } from 'models';
+import { AuthService } from 'services/auth.service';
 
 @Injectable()
 export class HealthService {
