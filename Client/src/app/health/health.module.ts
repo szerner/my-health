@@ -35,7 +35,7 @@ import { DialogService } from '../core/services/dialog.service';
    ],
    providers: [
       HealthService,
-      DialogService
+      DialogService // without: Error: No Component factory found for...
    ]
 
 })

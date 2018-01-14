@@ -1,14 +1,14 @@
-<h2>Users
-  <button class="btn btn-primary float-right" (click)="addUser()">
+<h2>{{'user-administration' | translate}}
+  <button class="btn btn-primary float-right" (click)="addUser()" [title]="'add' | translate">
     <i class="fa fa-user-plus" aria-hidden="true"></i>
   </button>
 </h2>
 <table *ngIf="users" class="table">
   <thead class="thead-light">
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Admin</th>
+      <th>{{'form-label.name' | translate}}</th>
+      <th>{{'form-label.email' | translate}}</th>
+      <th>{{'form-label.admin' | translate}}</th>
       <th></th>
     </tr>
   </thead>
@@ -18,8 +18,8 @@
       <td>{{ user.email }}</td>
       <td><i *ngIf="user.admin" class="fa fa-check" aria-hidden="true"></i></td>
       <td  class="list-action-buttons">
-        <button class="btn btn-primary btn-sm" (click)="editUser(user)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-        <button *ngIf="!user.admin" class="btn btn-danger btn-sm" (click)="deleteUser(user)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        <button class="btn btn-primary btn-sm" (click)="editUser(user)" ><i class="fa fa-pencil" aria-hidden="true" [title]="'edit' | translate"></i></button>
+        <button *ngIf="!user.admin" class="btn btn-danger btn-sm" (click)="deleteUser(user)"><i class="fa fa-trash" aria-hidden="true" [title]="'delete' | translate"></i></button>
       </td>
     </tr>
   </tbody>

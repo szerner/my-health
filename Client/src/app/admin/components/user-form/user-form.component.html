@@ -4,26 +4,26 @@
 <div class="modal-body">
    <form #f="ngForm" novalidate>
       <div class="form-group">
-         <label for="firstName">First Name</label>
+         <label for="firstName">{{'form-label.firstname' | translate}}</label>
          <input [(ngModel)]="dialogInput.data.firstName" name="firstName" id="firstName" type="text" class="form-control" #firstName="ngModel"
             required>
-         <div *ngIf="firstName.touched && firstName.invalid" class="alert alert-danger">Please specify the users First Name</div>
+         <div *ngIf="firstName.touched && firstName.invalid" class="alert alert-danger">{{'error.firstname' | translate}}</div>
       </div>
       <div class="form-group">
-         <label for="lastName">Last Name</label>
+         <label for="lastName">{{'form-label.lastname' | translate}}</label>
          <input [(ngModel)]="dialogInput.data.lastName" name="lastName" id="lastName" type="text" class="form-control" required #lastName="ngModel">
-         <div *ngIf="lastName.touched && lastName.invalid" class="alert alert-danger">Please specify the users Last Name</div>
+         <div *ngIf="lastName.touched && lastName.invalid" class="alert alert-danger">{{'error.lastname' | translate}}</div>
       </div>
       <div class="form-group">
-         <label for="email">Email</label>
+         <label for="email">{{'form-label.email' | translate}}</label>
          <input [(ngModel)]="dialogInput.data.email" name="email" id="email" type="email" class="form-control" required #email="ngModel">
-         <div *ngIf="email.touched && email.invalid" class="alert alert-danger">Please enter the users Email</div>
+         <div *ngIf="email.touched && email.invalid" class="alert alert-danger">{{'error.email' | translate}}</div>
       </div>
    </form>
 </div>
 <div class="modal-footer">
    <div class="float-right">
-      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-      <button type="button" (click)="save(f.value)" [disabled]="f.invalid" class="btn btn-primary" autofocus>Save</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">{{'cancel' | translate}}</button>
+      <button type="button" (click)="save(f.value)" [disabled]="f.invalid" class="btn btn-primary" autofocus>{{'save' | translate}}</button>
    </div>
 </div>

@@ -9,7 +9,14 @@ import { AppComponent } from './app.component';
 import { HealthModule } from './health/health.module';
 import { AdminModule } from './admin/admin.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 @NgModule({
    declarations: [
       AppComponent,
@@ -18,11 +25,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       BrowserModule,
       CoreModule,
       NgbModule.forRoot(),
+      TranslateModule.forRoot({
+         loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+         }
+      }),
       SharedModule,
       BrowserAnimationsModule,
-      AppRoutingModule,
-      // HealthModule, // workaround: not actually lazy loading
-      // AdminModule // workaround: not actually lazy loading
+      AppRoutingModule
    ],
    providers: [],
    bootstrap: [AppComponent]

@@ -3,15 +3,15 @@
    <div class="btn-group btn-group-toggle col" data-toggle="buttons">
       <label class="btn btn-light" [class.active]="tableMode" [routerLink]="['./', {view: 'table'}]">
          <input type="radio" name="viewMode" autocomplete="off">
-         <i class="fa fa-table" aria-hidden="true"></i> Table
+         <i class="fa fa-table" aria-hidden="true"></i> {{'table' | translate }}
       </label>
       <label class="btn btn-light" [class.active]="!tableMode" [routerLink]="['./', {view: 'chart'}]">
          <input type="radio" name="viewMode" autocomplete="off">
-         <i class="fa fa-line-chart" aria-hidden="true"></i> Chart
+         <i class="fa fa-line-chart" aria-hidden="true"></i> {{'chart' | translate }}
       </label>
    </div>
    <div class="col">
-      <button class="btn btn-primary float-right" (click)="addData()">
+      <button class="btn btn-primary float-right" (click)="addData()" [title]="'add' | translate">
          <i class="fa fa-plus" aria-hidden="true"></i>
       </button>
    </div>
@@ -29,6 +29,6 @@
       </div>
    </div>
    <ng-template #noData>
-      <p>You don't have any data in this section.</p>
+      <div class="alert alert-primary">{{'no-data' | translate }}</div>
    </ng-template>
 </div>

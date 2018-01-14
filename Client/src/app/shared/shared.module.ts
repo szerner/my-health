@@ -9,7 +9,8 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
    imports: [
-      CommonModule,
+		CommonModule,
+		TranslateModule,
       NgbModule
    ],
    exports: [

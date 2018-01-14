@@ -20,10 +20,11 @@ export class WeightChartComponent extends HealthChartComponent {
       // });
    }
    
-   initChart() {
+	initChart() {
+		
       this.resetDatasets();
       this.addDataset({
-         label: 'Body Weight [kg]', borderColor: 'rgb(0, 123, 255)',
+			label: this.translate.instant('body-weight') + ' [kg]', borderColor: 'rgb(0, 123, 255)',
          data: this.data.map(bodyWeight => { return { x: bodyWeight.time, y: bodyWeight.weight } })
       });
       // if (this.user && this.user.height) {

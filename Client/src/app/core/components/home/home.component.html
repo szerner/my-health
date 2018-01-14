@@ -1,7 +1,7 @@
 <h1>My Health</h1>
 <p>
-   Enter and view your health data!
+   {{'home.text' | translate }}
 </p>
-<button *ngIf="!auth.isAuthenticated" class="btn btn-primary" (click)="login()">Login
+<button *ngIf="!auth.isAuthenticated" class="btn btn-primary" (click)="login()">{{'login' | translate}}
   <i class="fa fa-sign-in" aria-hidden="true"></i>
 </button>

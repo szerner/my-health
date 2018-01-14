@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'shared/shared.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -18,23 +18,10 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { AccessDeniedComponent } from './components/access-denied/access-denied.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
-
-// AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient) {
-   return new TranslateHttpLoader(http);
-}
-
 @NgModule({
    imports: [
       RouterModule,
       HttpClientModule,
-      TranslateModule.forRoot({
-         loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-         }
-      }),
       SharedModule
    ],
    declarations: [

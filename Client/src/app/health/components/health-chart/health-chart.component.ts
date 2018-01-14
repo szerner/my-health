@@ -1,6 +1,7 @@
 import { Component, ViewChild, Input, OnChanges } from '@angular/core';
 import { ChartComponent } from 'angular2-chartjs';
 import { HealthService } from '../../services/health.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
    templateUrl: './health-chart.component.html'
@@ -12,7 +13,7 @@ export abstract class HealthChartComponent implements OnChanges {
    chartData;
    chartOptions;
 
-   constructor(protected healthService: HealthService) {
+   constructor(protected healthService: HealthService, protected translate: TranslateService) {
       this.chartOptions = {
          responsive: true,
          maintainAspectRatio: true,

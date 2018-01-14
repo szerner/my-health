@@ -5,13 +5,14 @@ import { DialogService } from 'services/dialog.service';
 import { UserService } from 'services/user.service';
 import { User, DialogInput, DialogResult } from 'models';
 import { UserFormComponent } from '../user-form/user-form.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
    templateUrl: './user-list.component.html'
 })
 export class UserListComponent implements OnInit {
    users: User[];
-   constructor(private userService: UserService, private dialogService: DialogService) { }
+   constructor(private userService: UserService, private dialogService: DialogService, private translate: TranslateService) { }
 
    ngOnInit() {
       this.loadUsers();
@@ -19,7 +20,7 @@ export class UserListComponent implements OnInit {
 
    async addUser() {
       let inputData = new DialogInput();
-      inputData.title = 'Add user';
+		inputData.title = this.translate.instant('add-user');
       inputData.data = new User();
       let dialogResult = await this.dialogService.showFormDialog(UserFormComponent, inputData);
       if (dialogResult)
@@ -28,7 +29,7 @@ export class UserListComponent implements OnInit {
 
    async editUser(user: User) {
       let inputData = new DialogInput();
-      inputData.title = 'Edit user';
+      inputData.title = this.translate.instant('edit-user');
       inputData.data = Object.assign({}, user);
       let dialogResult = await this.dialogService.showFormDialog(UserFormComponent, inputData);
       if (dialogResult) {
@@ -39,9 +40,8 @@ export class UserListComponent implements OnInit {
 
    deleteUser(user: User) {
       let inputData = new DialogInput();
-      inputData.title = 'Delete user \'' + user.firstName + "\'?";
-      inputData.message = `Do you really want to delete this user and all related data?#
-      This operation cannot be undone!`;
+		inputData.title = this.translate.instant('delete-user');
+      inputData.message = this.translate.instant('delete-user-msg');
 
       this.dialogService.showConfirmDialog(inputData)
          .then(result => {

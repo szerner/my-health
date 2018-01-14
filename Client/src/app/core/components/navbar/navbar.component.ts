@@ -5,6 +5,7 @@ import { DialogService } from 'services/dialog.service';
 import { UserService } from 'services/user.service';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { User, DialogInput } from 'models';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
    selector: 'main-nav',
@@ -12,7 +13,13 @@ import { User, DialogInput } from 'models';
    styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-   constructor(private router: Router, public auth: AuthService, private dialogService: DialogService, private userService: UserService) { }
+	constructor(
+		private router: Router,
+		public auth: AuthService,
+		private dialogService: DialogService,
+		private userService: UserService,
+		private translate: TranslateService
+	) { }
 
    async login() {
       let isAuthenticated = await this.dialogService.showLoginDialog();
@@ -28,7 +35,7 @@ export class NavbarComponent {
    async editProfile() {
       let user$ = this.auth.currentUser$;
       let dialogInput = new DialogInput();
-      dialogInput.title = "Edit Profile";
+      dialogInput.title = this.translate.instant('edit-profile');
       dialogInput.data = user$;
       let dialogResult = await this.dialogService.showFormDialog(UserProfileComponent, dialogInput, { size: "lg" });
       if (dialogResult) {

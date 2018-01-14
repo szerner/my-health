@@ -1,26 +1,24 @@
 <div class="modal-header bg-primary text-white">
-  <h4 class="modal-title">Login</h4>
+  <h4 class="modal-title">{{'login' | translate }}</h4>
 </div>
 <div class="modal-body">
   <form #f="ngForm" class="form-signin">
-    <div *ngIf="invalidLogin" class="alert alert-danger">Invalid username or password.</div>
+    <div *ngIf="invalidLogin" class="alert alert-danger">{{ 'login-error' | translate}}</div>
     <div class="form-group">
-      <label for="inputEmail">Email address</label>
+      <label for="inputEmail">{{'form-label.email' | translate}}</label>
         <input ngModel name="email" id="inputEmail" type="email" class="form-control"
           required #email="ngModel">
-      <!-- <div *ngIf="email.touched && email.invalid" class="alert alert-danger">Please enter your Email address</div> -->
     </div>
     <div class="form-group">
-      <label for="inputPassword">Password</label>
+      <label for="inputPassword">{{ 'form-label.password' | translate}}</label>
         <input ngModel name="password" id="inputPassword" type="password" class="form-control"
           required #password="ngModel">
-      <!-- <div *ngIf="password.touched && password.invalid" class="alert alert-danger">Please enter your password</div> -->
     </div>
   </form>
 </div>
 <div class="modal-footer">
   <div class="float-right">
-    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-    <button type="button" (click)="login(f.value)" [disabled]="f.invalid || this.checkCredentials" class="btn btn-primary" autofocus>Sign in</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">{{ 'cancel' | translate }}</button>
+    <button type="button" (click)="login(f.value)" [disabled]="f.invalid || this.checkCredentials" class="btn btn-primary" autofocus>{{ 'login' | translate }}</button>
   </div>
 </div>

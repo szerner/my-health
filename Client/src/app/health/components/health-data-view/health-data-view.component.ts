@@ -7,6 +7,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { CirculationFormComponent } from '../circulation/circulation-form/circulation-form.component';
 import { DialogInput, User, BodyWeight, Circulation } from 'models';
 import { Observable } from 'rxjs/Observable';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
    templateUrl: './health-data-view.component.html'
@@ -21,7 +22,8 @@ export class HealthDataViewComponent {
       private route: ActivatedRoute,
       private auth: AuthService,
       private dialogService: DialogService,
-      private healthService: HealthService
+		private healthService: HealthService,
+		private translate: TranslateService
    ) {
       this.user$ = auth.currentUser$;
       route.url.subscribe(urlSegments => {
@@ -38,7 +40,7 @@ export class HealthDataViewComponent {
       this.data$ = this.weightMode ? this.healthService.getBodyWeights() : this.healthService.getCirculations();
    }
    get title() {
-      return this.weightMode ? "Your Body Weight" : "Your Blood Pressure and Heart Rate";
+		return this.weightMode ? this.translate.instant('body-weight-title') : this.translate.instant('circulation.title');
    }
 
    addData() {
@@ -70,10 +72,10 @@ export class HealthDataViewComponent {
       }
    }
 
-   async deleteData(dataId: number) {
-      let inputData = new DialogInput();
-      inputData.title = 'Delete this entry?';
-      inputData.message = `Do you really want to delete this data entry?`;
+	async deleteData(dataId: number) {
+		let inputData = new DialogInput();
+		inputData.title = this.translate.instant('dialog.delete.title');
+		inputData.message = this.translate.instant('dialog.delete.text');;
 
       let dialogResult = await this.dialogService.showConfirmDialog(inputData);
       if (dialogResult.data) {

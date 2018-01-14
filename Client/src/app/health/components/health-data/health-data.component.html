@@ -1,14 +1,14 @@
-  <h2>Your Health Data</h2>
-  <p>Enter your blood pressure, heart rate and body weight and evaluate your data as tables and charts.</p>
+  <h2>{{'health-data.title' | translate }}</h2>
+  <p>{{'health-data.text' | translate }}</p>
   <ul class="nav nav-tabs my-4">
     <li class="nav-item">
       <a class="nav-link" [routerLink]="['circulation', {view: viewMode}]" routerLinkActive="active">
         <i class="fa fa-heartbeat" aria-hidden="true"></i>
-        Circulation</a>
+        {{'circulation.label' | translate }}</a>
     </li>
     <li class="nav-item">
       <a class="nav-link"  [routerLink]="['weight', {view: viewMode}]" routerLinkActive="active">
-        <i class="fa fa-balance-scale" aria-hidden="true"></i> Body Weight</a>
+        <i class="fa fa-balance-scale" aria-hidden="true"></i> {{'body-weight' | translate}}</a>
     </li>
   </ul>
   <router-outlet></router-outlet>

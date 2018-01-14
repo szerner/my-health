@@ -2,61 +2,60 @@
    <h4 class="modal-title">{{dialogInput.title}}</h4>
 </div>
 <div class="modal-body">
-   <p>Please complete your user profile:</p>
    <form #f="ngForm" novalidate>
       <div *ngIf="dialogInput.data | async as user">
          <div class="form-row">
             <div class="form-group col">
-               <label for="firstName">First Name</label>
+               <label for="firstName">{{'form-label.firstname' | translate}}</label>
                <input [(ngModel)]="user.firstName" name="firstName" id="firstName" type="text" class="form-control" #firstName="ngModel"
                   required>
-               <div *ngIf="firstName.touched && firstName.invalid" class="alert alert-danger">Please specify your First Name</div>
+               <div *ngIf="firstName.touched && firstName.invalid" class="alert alert-danger">{{'error.firstname' | translate}}</div>
             </div>
             <div class="form-group col">
-               <label for="lastName">Last Name</label>
+               <label for="lastName">{{'form-label.lastname' | translate}}</label>
                <input [(ngModel)]="user.lastName" name="lastName" id="lastName" type="text" class="form-control" required #lastName="ngModel">
-               <div *ngIf="lastName.touched && lastName.invalid" class="alert alert-danger">Please specify your Last Name</div>
+               <div *ngIf="lastName.touched && lastName.invalid" class="alert alert-danger">{{'error.lastname' | translate}}</div>
             </div>
          </div>
 
          <div class="form-row">
             <div class="form-group col">
-               <label for="email">Email</label>
+               <label for="email">{{'form-label.email' | translate}}</label>
                <input [(ngModel)]="user.email" name="email" id="email" type="email" class="form-control" required #email="ngModel">
-               <div *ngIf="email.touched && email.invalid" class="alert alert-danger">Please enter your Email</div>
+               <div *ngIf="email.touched && email.invalid" class="alert alert-danger">{{'error.email' | translate}}</div>
             </div>
             <div class="form-group col">
-               <label for="birthDate">Birth Date</label>
-               <input [(ngModel)]="user.birthDate" name="birthDate" id="birthDate" type="date" class="form-control" required #birthDate="ngModel">
-               <div *ngIf="birthDate.touched && birthDate.invalid" class="alert alert-danger">Please enter your birth date</div>
+               <label for="birthDate">{{'form-label.birthdate' | translate}}</label>
+               <input [(ngModel)]="user.birthDate" name="birthDate" id="birthDate" type="date" class="form-control"  #birthDate="ngModel">
+               <div *ngIf="birthDate.touched && birthDate.invalid" class="alert alert-danger">{{'error.birthdate' | translate}}</div>
             </div>
          </div>
 
          <div class="form-row">
             <div class="form-group col">
-               <label for="height">Height</label>
+               <label for="height">{{'form-label.height' | translate}}</label>
                <div class="input-group">
-                  <input [(ngModel)]="user.height" name="height" id="height" type="number" min="100" max="300" class="form-control" required
+                  <input [(ngModel)]="user.height" name="height" id="height" type="number" min="100" max="300" class="form-control" 
                      #height="ngModel">
                   <span class="input-group-addon">cm</span>
                </div>
-               <div *ngIf="height.touched && height.invalid" class="alert alert-danger">Please enter your Height</div>
+               <div *ngIf="height.touched && height.invalid" class="alert alert-danger">{{'error.height' | translate}}</div>
             </div>
             <div class="form-group col">
-               <label>Gender</label>
+               <label>{{'form-label.gender' | translate}}</label>
                <div class="form-check">
                   <label class="form-check-label">
-                     <input class="form-check-input" type="radio" name="gender" [value]="1" [(ngModel)]="user.gender">Male
+                     <input class="form-check-input" type="radio" name="gender" [value]="1" [(ngModel)]="user.gender">{{'gender.male' | translate}}
                   </label>
                </div>
                <div class="form-check">
                   <label class="form-check-label">
-                     <input class="form-check-input" type="radio" name="gender" [value]="2" [(ngModel)]="user.gender">Female
+                     <input class="form-check-input" type="radio" name="gender" [value]="2" [(ngModel)]="user.gender">{{'gender.female' | translate}}
                   </label>
                </div>
                <div class="form-check">
                   <label class="form-check-label">
-                     <input class="form-check-input" type="radio" name="gender" [value]="3" [(ngModel)]="user.gender">Other
+                     <input class="form-check-input" type="radio" name="gender" [value]="3" [(ngModel)]="user.gender">{{'gender.other' | translate}}
                   </label>
                </div>
             </div>
@@ -66,7 +65,7 @@
 </div>
 <div class="modal-footer">
    <div class="float-right">
-      <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
-      <button type="button" (click)="save(f.value)" [disabled]="f.invalid" class="btn btn-primary" autofocus>Save</button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">{{'cancel' | translate}}</button>
+      <button type="button" (click)="save(f.value)" [disabled]="f.invalid" class="btn btn-primary" autofocus>{{'save' | translate}}</button>
    </div>
 </div>

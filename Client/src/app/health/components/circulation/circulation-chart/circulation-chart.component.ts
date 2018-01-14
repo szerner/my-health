@@ -12,21 +12,21 @@ export class CirculationChartComponent extends HealthChartComponent {
    initChart() {
       this.resetDatasets();
       this.addDataset({
-         label: 'Systolic [mmHg]', borderColor: 'rgb(0, 123, 255)',
+         label: this.translate.instant('systolic') + ' [mmHg]', borderColor: 'rgb(0, 123, 255)',
          yAxisID: 'y-default',
          data: this.data
             .filter(circulation => circulation.pressureSystolic != null)   
             .map(circulation => { return { x: circulation.time, y: circulation.pressureSystolic } })
       });
       this.addDataset({
-         label: 'Diastolic [mmHg]', borderColor: 'rgba(0, 123, 255, 0.4)',
+			label: this.translate.instant('diastolic') + ' [mmHg]', borderColor: 'rgba(0, 123, 255, 0.4)',
          yAxisID: 'y-default',
          data: this.data
             .filter(circulation => circulation.pressureDiastolic != null)    
             .map(circulation => { return { x: circulation.time, y: circulation.pressureDiastolic } })
       });
       this.addDataset({
-         label: 'Heart Rate [BpM]', borderColor: 'rgb(220, 53, 69)',
+			label: this.translate.instant('heart-rate') + ' [BpM]', borderColor: 'rgb(220, 53, 69)',
          yAxisID : 'y-default',
          data: this.data
             .filter(circulation => circulation.heartRate != null)    
