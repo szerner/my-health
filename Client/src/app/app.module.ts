@@ -15,7 +15,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 
-registerLocaleData(localeDe, 'de');
+registerLocaleData(localeDe, 'de'); // add for date and dateTime pipes
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {

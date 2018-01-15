@@ -9,8 +9,7 @@ export class LocalizedDateTimePipe implements PipeTransform {
 
 	constructor(private translate: TranslateService) { }
 
-	transform(value: any, args?: any): any {
-		let dateFormat = this.translate.instant('dateTimeFormat');
+	transform(value: any, dateFormat: string = 'short'): any {
 		const datePipe: DatePipe = new DatePipe(this.translate.currentLang);
 		return datePipe.transform(value, dateFormat);
 	}
