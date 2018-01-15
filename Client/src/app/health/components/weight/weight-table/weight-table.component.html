@@ -14,7 +14,7 @@
    </thead>
    <tbody>
       <tr *ngFor="let d of data">
-         <td>{{ d.time | date:'short'}} </td>
+         <td>{{ d.time | localizedDate }} </td>
          <td>{{ d.weight }}</td>
          <td>{{ getBMI(d.weight) }}</td>
          <td class="list-action-buttons">

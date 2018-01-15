@@ -6,6 +6,8 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { LocalizedDatePipe } from './pipes/localized-date.pipe';
+import { LocalizedDateTimePipe } from './pipes/localized-datetime.pipe';
 
 @NgModule({
    imports: [
@@ -19,11 +21,15 @@ import { TranslateModule } from '@ngx-translate/core';
       FormsModule,
       NgbModule,
       SpinnerComponent,
-      ConfirmDialogComponent
+		ConfirmDialogComponent,
+		LocalizedDatePipe,
+		LocalizedDateTimePipe
    ],
    declarations: [
       SpinnerComponent,
-      ConfirmDialogComponent
+		ConfirmDialogComponent,
+		LocalizedDatePipe,
+		LocalizedDateTimePipe
    ],
    entryComponents: [
       ConfirmDialogComponent

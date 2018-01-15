@@ -9,7 +9,7 @@
    </thead>
    <tbody>
       <tr *ngFor="let m of data">
-         <td>{{ m.time | date:'short'}} </td>
+         <td>{{ m.time | localizedDateTime }} </td>
          <td>{{ m.pressureSystolic ? m.pressureSystolic : '-' }}/{{ m.pressureDiastolic ? m.pressureDiastolic : '-' }}</td>
          <td>{{ m.heartRate ? m.heartRate : '-' }}</td>
          <td class="list-action-buttons">
