@@ -1,7 +1,8 @@
-import { Component, Input, Injector } from '@angular/core';
+import { Component, Input, Injector, Injectable } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogInput, DialogResult } from 'models';
 
+@Injectable()
 export abstract class DialogComponent {
   @Input() dialogInput: DialogInput;
 

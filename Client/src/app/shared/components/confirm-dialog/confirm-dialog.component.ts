@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
-  templateUrl: 'confirm-dialog.component.html'
+  templateUrl: './confirm-dialog.component.html'
 })
 export class ConfirmDialogComponent extends DialogComponent {
   confirm() {

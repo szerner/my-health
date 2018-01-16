@@ -1,8 +1,9 @@
-import { Component, ViewChild, Input, OnChanges } from '@angular/core';
+import { Component, ViewChild, Input, OnChanges, Injectable } from '@angular/core';
 import { ChartComponent } from 'angular2-chartjs';
 import { HealthService } from '../../services/health.service';
 import { TranslateService } from '@ngx-translate/core';
 
+@Injectable() // for DI
 export abstract class HealthChartComponent implements OnChanges {
    @Input() data;
    @ViewChild(ChartComponent) chart: ChartComponent;

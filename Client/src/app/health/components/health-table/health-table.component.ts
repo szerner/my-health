@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Injectable } from '@angular/core';
 import { HealthService } from '../../services/health.service';
 
+@Injectable()
 export abstract class HealthTableComponent {
    @Input() data: any[];
    @Output() onDelete = new EventEmitter<number>();
