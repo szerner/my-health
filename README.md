@@ -58,11 +58,11 @@ Password: [first name].[last name]
 ```
 Then you can enter your health data (blood pressures, heart rates and body weight) and view these as tables and charts.
 ## Screenshots
-![User Administration](https://github.com/szerner/my-health/screenshots/admin-user.png)
+![User Administration](https://github.com/szerner/my-health/blob/master/screenshots/admin-user.png)
 
-![Data Table View](https://github.com/szerner/my-health/screenshots/data-table.png)
+![Data Table View](https://github.com/szerner/my-health/blob/master/screenshots/data-table.png)
 
-![Data Chart View](https://github.com/szerner/my-health/screenshots/data-chart.png)
+![Data Chart View](https://github.com/szerner/my-health/blob/master/screenshots/data-chart.png)
 ## ToDo
 * Better securing with real password management.
 * Data pagination resp. define a date range for the table and chart views
