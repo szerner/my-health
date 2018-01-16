@@ -1,5 +1,5 @@
 # MyHealth
-**MyHealth** is a project to administer your personal health data (blood pressure, heart frequency, body weight) and view your data as a table or a chart.
+**MyHealth** is a personal project to administer users and their health data (blood pressure, heart frequency, body weight). All data can be viewed as tables or charts.
 
 It uses an Angular frontend and Microsoft .NET Core 2 / Entity Framework Core 2 for it's backend.
 
