@@ -13,17 +13,20 @@ It uses an Angular frontend and Microsoft .NET Core 2 / Entity Framework Core 2 
 
 ## Technical details
 ### Backend ###
+* REST API
 * Microsoft .Net Core 2
 * Microsoft Entity Framework Core 2
 * MS-SQL database using Code First Migrations
 
 **Local installation:**
+
 The backend files are in the subfolder 'MyHealth'. In this folder run:
 ```
 dotnet restore
 dotnet ef database update
 dotnet run
 ```
+The server now listens on `http://localhost:5000`.
 
 ### Frontend:
 * Angular 5 (with Angular-CLI)
@@ -32,10 +35,12 @@ dotnet run
 * charts for data evalutation: chart.js
 
 **Local installation:**
+
 All files of the client side (frontend) are in the subfolder 'Client'. In this folder run:
 ```
 npm start
 ```
+The application now can be called with `http://localhost:4200`. The api calls will be redirected to the server port using the configurations in `proxy.conf.json`.
 ## Usage
 After the installation, there is one admin user predefined. User the following credentials for the first login:
 ```
