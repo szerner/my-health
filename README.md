@@ -58,9 +58,15 @@ Password: [first name].[last name]
 ```
 Then you can enter your health data (blood pressures, heart rates and body weight) and view these as tables and charts.
 ## Screenshots
+User Administration:
+
 ![User Administration](https://github.com/szerner/my-health/blob/master/screenshots/admin-user.png)
 
+Health data: table view
+
 ![Data Table View](https://github.com/szerner/my-health/blob/master/screenshots/data-table.png)
+
+Health data: chart view
 
 ![Data Chart View](https://github.com/szerner/my-health/blob/master/screenshots/data-chart.png)
 ## ToDo
