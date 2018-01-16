@@ -33,6 +33,7 @@ The server now listens on `http://localhost:5000`.
 * Bootstrap 4 for Layout/CSS and some components (npm-package: 'ngx-bootstrap')
 * i18n: UI languages english/german (npm-package: nxg-translate)
 * charts for data evalutation: chart.js
+* Serviceworker caching for (limited) offline support
 
 **Local installation:**
 

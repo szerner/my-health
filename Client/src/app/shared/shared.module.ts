@@ -26,7 +26,7 @@ import { LocalizedDateTimePipe } from './pipes/localized-datetime.pipe';
    declarations: [
       SpinnerComponent,
 		ConfirmDialogComponent,
-		LocalizedDateTimePipe
+		LocalizedDateTimePipe,
    ],
    entryComponents: [
       ConfirmDialogComponent

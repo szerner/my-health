@@ -3,10 +3,6 @@ import { ChartComponent } from 'angular2-chartjs';
 import { HealthService } from '../../services/health.service';
 import { TranslateService } from '@ngx-translate/core';
 
-@Component({
-   templateUrl: './health-chart.component.html'
-})
-
 export abstract class HealthChartComponent implements OnChanges {
    @Input() data;
    @ViewChild(ChartComponent) chart: ChartComponent;

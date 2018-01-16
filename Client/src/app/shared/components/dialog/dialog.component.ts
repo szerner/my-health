@@ -2,9 +2,6 @@ import { Component, Input, Injector } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DialogInput, DialogResult } from 'models';
 
-@Component({
-  template: ''
-})
 export abstract class DialogComponent {
   @Input() dialogInput: DialogInput;
 
